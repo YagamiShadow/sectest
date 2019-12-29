@@ -1,18 +1,11 @@
-package it.unitn.sectest;
+package it.unitn.sectest.xss_suite;
 
-import static org.junit.Assert.assertEquals;
 
-import org.junit.After;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import utils.BaseTest;
-
+/*
 public class XssNotInPixyExample extends BaseTest {
 
-	@Test
-	public void testXssTest() {
+	@Override
+	public void test() {
 
 		// 1. Login as admin
 		// 2. Change admin username inserting XSS attack
@@ -32,9 +25,9 @@ public class XssNotInPixyExample extends BaseTest {
 		// WebElement settingButton = driver.findElement(By.cssSelector("#topNavSetting > a:nth-child(1)")); ElementNotVisibleException
 		// settingButton.click();
 		
-		WebElement dropDownMenuButton = driver.findElement(By.xpath("/html/body/nav/div/div[2]/ul/li[7]/a"));
+		WebElement dropDownMenuButton = helper.findElement(By.xpath("/html/body/nav/div/div[2]/ul/li[7]/a"));
 		dropDownMenuButton.click();
-		WebElement settingButton = driver.findElement(By.cssSelector("#topNavSetting > a:nth-child(1)"));
+		WebElement settingButton = helper.findElement(By.cssSelector("#topNavSetting > a:nth-child(1)"));
 		settingButton.click();
 		
 		try {
@@ -44,10 +37,10 @@ public class XssNotInPixyExample extends BaseTest {
 		}
 		
 		// 3. Change admin's username inserting a XSS attack vector
-		WebElement usernameTextBox = driver.findElement(By.id("username"));
+		WebElement usernameTextBox = helper.findElement(By.id("username"));
 		usernameTextBox.clear();
 		usernameTextBox.sendKeys("<h1>admin</h1>");
-		WebElement changeUsernameButton = driver.findElement(By.id("changeUsernameBtn"));
+		WebElement changeUsernameButton = helper.findElement(By.id("changeUsernameBtn"));
 		changeUsernameButton.click();
 		
 		try {
@@ -67,7 +60,7 @@ public class XssNotInPixyExample extends BaseTest {
 		login("<h1>admin</h1>", "admin");
 		
 		// 5 Check the username in the dashboard
-		WebElement dashboardUsernameSpan = driver.findElement(By.xpath("/html/body/div/div[1]/div/div/div/a/span"));
+		WebElement dashboardUsernameSpan = helper.findElement(By.xpath("/html/body/div/div[1]/div/div/div/a/span"));
 		String innerHtml = dashboardUsernameSpan.getAttribute("innerHTML");
 		
 		assertEquals("<h1>admin</h1>", innerHtml);
@@ -75,18 +68,18 @@ public class XssNotInPixyExample extends BaseTest {
 	
 	// === Support methods ===
 	private void login(String username, String password) {
-		WebElement usernameTextBox = driver.findElement(By.id("username"));
-		WebElement passwordTextBox = driver.findElement(By.id("password"));
+		WebElement usernameTextBox = helper.findElement(By.id("username"));
+		WebElement passwordTextBox = helper.findElement(By.id("password"));
 		usernameTextBox.sendKeys(username);
 		passwordTextBox.sendKeys(password);
-		WebElement submitButton = driver.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[3]/div/button"));
+		WebElement submitButton = helper.findElement(By.xpath("/html/body/div/div/div/div/div[2]/form/fieldset/div[3]/div/button"));
 		submitButton.click();
 	}
 	
 	private void logout() {
-		WebElement dropDownMenuButton = driver.findElement(By.xpath("//*[@id=\"navSetting\"]/a"));
+		WebElement dropDownMenuButton = helper.findElement(By.xpath("//*[@id=\"navSetting\"]/a"));
 		dropDownMenuButton.click();
-		WebElement logOutButton = driver.findElement(By.xpath("/html/body/nav/div/div[2]/ul/li[7]/ul/li[3]/a"));
+		WebElement logOutButton = helper.findElement(By.xpath("/html/body/nav/div/div[2]/ul/li[7]/ul/li[3]/a"));
 		logOutButton.click();
 	}
 	
@@ -98,10 +91,10 @@ public class XssNotInPixyExample extends BaseTest {
 		// 0. We are still in the dashboard
 		
 		// 1. Go to the setting page
-		WebElement dropDownMenuButton = driver.findElement(By.xpath("//*[@id=\"navSetting\"]/a"));
+		WebElement dropDownMenuButton = helper.findElement(By.xpath("//*[@id=\"navSetting\"]/a"));
 		dropDownMenuButton.click();
 
-		WebElement settingButton = driver.findElement(By.xpath("/html/body/nav/div/div[2]/ul/li[7]/ul/li[2]/a"));
+		WebElement settingButton = helper.findElement(By.xpath("/html/body/nav/div/div[2]/ul/li[7]/ul/li[2]/a"));
 		settingButton.click();
 		
 		try {
@@ -111,11 +104,11 @@ public class XssNotInPixyExample extends BaseTest {
 		}
 		
 		// 2. Set the username back to admin
-		WebElement usernameTextBox = driver.findElement(By.id("username"));
+		WebElement usernameTextBox = helper.findElement(By.id("username"));
 		usernameTextBox.clear();
 		usernameTextBox.sendKeys("admin");
-		WebElement changeUsernameButton = driver.findElement(By.id("changeUsernameBtn"));
+		WebElement changeUsernameButton = helper.findElement(By.id("changeUsernameBtn"));
 		changeUsernameButton.click();
 	}
 	
-}
+}*/
