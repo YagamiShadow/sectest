@@ -20,7 +20,7 @@ public class XssOrdersPhp50Min extends BaseTest {
 
     @Override
     public void clean() {
-        if (orderId != null){
+        if (orderId != null) {
             helper.deleteOrder(orderId);
             orderId = null;
         }

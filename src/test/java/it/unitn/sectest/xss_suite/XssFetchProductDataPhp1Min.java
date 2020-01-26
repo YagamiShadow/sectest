@@ -23,7 +23,7 @@ public class XssFetchProductDataPhp1Min extends BaseTest {
 
     @Override
     public void clean() {
-        if (productId != null){
+        if (productId != null) {
             helper.removeProduct(productId);
             productId = null;
         }

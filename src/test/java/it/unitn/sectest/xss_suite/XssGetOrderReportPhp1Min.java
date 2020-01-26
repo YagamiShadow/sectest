@@ -2,30 +2,32 @@ package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import utils.*;
+import utils.BaseTest;
+import utils.GenericUtils;
+import utils.ProcedureHelper;
+import utils.XssPayload;
 
 import java.util.Random;
-import java.util.Set;
 
 public class XssGetOrderReportPhp1Min extends BaseTest {
     private boolean switched = false;
     private Integer orderId;
 
     @Test
-    public void testB(){
+    public void testB() {
         XssPayload payload = XssPayload.genPlainPayload();
         internal_test(payload.toString(), "");
         assert payload.isInDocument(helper);
     }
 
     @Test
-    public void testC(){
+    public void testC() {
         XssPayload payload = XssPayload.genPlainPayload();
         internal_test("", payload.toString());
         assert payload.isInDocument(helper);
     }
 
-    public void test(){
+    public void test() {
         testB();
         cleanSafely();
         testC();
@@ -36,7 +38,7 @@ public class XssGetOrderReportPhp1Min extends BaseTest {
         switched = false;
         helper.requireLoginAdmin();
         int daysToAdd = new Random().nextInt(1000);
-        orderId = helper.createDummyOrder(GenericUtils.dateString(daysToAdd),client_name,client_contact);
+        orderId = helper.createDummyOrder(GenericUtils.dateString(daysToAdd), client_name, client_contact);
         helper.get(ProcedureHelper.REPORT_PATH);
         helper.findElement(By.id("startDate")).sendKeys(GenericUtils.dateString(daysToAdd));
         helper.findElement(By.id("endDate")).sendKeys(GenericUtils.dateString(daysToAdd));
@@ -51,11 +53,11 @@ public class XssGetOrderReportPhp1Min extends BaseTest {
 
     @Override
     public void clean() {
-        if (switched){
+        if (switched) {
             helper.closeBackToLatestWindow();
             switched = false;
         }
-        if (orderId != null){
+        if (orderId != null) {
             helper.deleteOrder(orderId);
             orderId = null;
         }

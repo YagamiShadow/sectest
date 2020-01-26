@@ -1,6 +1,5 @@
 package it.unitn.sectest.xss_suite;
 
-import org.apache.commons.lang3.SystemUtils;
 import org.junit.jupiter.api.Test;
 import utils.BaseTest;
 import utils.GenericUtils;
@@ -15,7 +14,7 @@ public class XssSettingsPhp3Min extends BaseTest {
     public void test() {
         helper.requireLoginAdmin();
         XssPayload payload = XssPayload.genDoubleQuoteAttributePayload("input", true);
-        String username = "user_"+ GenericUtils.genRandomString(8);
+        String username = "user_" + GenericUtils.genRandomString(8);
         helper.createDummyUser(username);
         helper.requireLogin(username);
         userId = helper.getUserId(username);

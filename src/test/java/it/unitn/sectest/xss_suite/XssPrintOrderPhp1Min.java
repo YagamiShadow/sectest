@@ -8,7 +8,7 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     private boolean switched = false;
 
     @Test
-    public void testA(){
+    public void testA() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
         orderId = helper.createDummyOrder(payload.toString(), "dummy");
@@ -16,15 +16,15 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     }
 
     @Test
-    public void testB(){
+    public void testB() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
-        orderId = helper.createOrder(GenericUtils.dateString(0), "dummy", "dummy", "100", "22", "100", "0", "100", "0", "100", 0, 0, 0, "'"+payload.toString()+"'", "-1");
+        orderId = helper.createOrder(GenericUtils.dateString(0), "dummy", "dummy", "100", "22", "100", "0", "100", "0", "100", 0, 0, 0, "'" + payload.toString() + "'", "-1");
         testPrintOrder(orderId, payload);
     }
 
     @Test
-    public void testC(){
+    public void testC() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
         orderId = helper.createDummyOrder("dummy", payload.toString());
@@ -32,7 +32,7 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     }
 
     @Test
-    public void testE(){
+    public void testE() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
         productId = helper.createDummyProduct("dummy");
@@ -41,7 +41,7 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     }
 
     @Test
-    public void testF(){
+    public void testF() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
         productId = helper.createDummyProduct("dummy");
@@ -50,7 +50,7 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     }
 
     @Test
-    public void testG(){
+    public void testG() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
         productId = helper.createDummyProduct("dummy");
@@ -59,7 +59,7 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     }
 
     @Test
-    public void testH(){
+    public void testH() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
         productId = helper.createDummyProduct(payload.toString());
@@ -68,16 +68,13 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     }
 
 
-
-
-
-    private void testPrintOrder(int orderId, XssPayload payload){
+    private void testPrintOrder(int orderId, XssPayload payload) {
         helper.requireLoginAdmin();
         helper.get(ProcedureHelper.ORDERS_MAN_URL);
         helper.stashHandles();
         sleep(200);
         try {
-            helper.executeScript("printOrder("+orderId+");");
+            helper.executeScript("printOrder(" + orderId + ");");
         } catch (RelativeWebDriver.JavascriptNotSupported javascriptNotSupported) {
             throw new RuntimeException(javascriptNotSupported);
         }
@@ -108,15 +105,15 @@ public class XssPrintOrderPhp1Min extends BaseTest {
 
     @Override
     public void clean() {
-        if (orderId != null){
+        if (orderId != null) {
             helper.deleteOrder(orderId);
             orderId = null;
         }
-        if (switched){
+        if (switched) {
             helper.switchToLatestHandle();
             switched = false;
         }
-        if (productId != null){
+        if (productId != null) {
             helper.removeProduct(productId);
             productId = null;
         }

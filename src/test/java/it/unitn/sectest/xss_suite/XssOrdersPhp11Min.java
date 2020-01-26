@@ -2,7 +2,6 @@ package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
 import utils.BaseTest;
-import utils.GenericUtils;
 import utils.ProcedureHelper;
 import utils.XssPayload;
 
@@ -20,7 +19,7 @@ public class XssOrdersPhp11Min extends BaseTest {
 
     @Override
     public void clean() {
-        if (productId != null){
+        if (productId != null) {
             helper.removeProduct(productId);
             productId = null;
         }

@@ -9,7 +9,7 @@ import utils.XssPayload;
 public class XssOrdersPhp64Min extends BaseTest {
 
     @Test
-    public void test(){
+    public void test() {
         helper.requireLoginAdmin();
         XssPayload payload = XssPayload.genDoubleQuoteAttributePayload("input");
         String path = GenericUtils.composeUrl(ProcedureHelper.ORDERS_PATH, "o", "editOrd", "i", payload.toString());

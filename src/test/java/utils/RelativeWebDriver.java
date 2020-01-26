@@ -15,38 +15,72 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import java.util.Set;
 
-public class RelativeWebDriver implements  WebDriver {
+public class RelativeWebDriver implements WebDriver {
 
     private RemoteWebDriver driver;
     private WebDriverProvider preferredProvider;
     private String hostURL;
+    private Set<String> stashedHandles = null;
+    private String latestHandle = null;
 
-    public RelativeWebDriver(String hostURL, WebDriverProvider preferredProvider){
+    public RelativeWebDriver(String hostURL, WebDriverProvider preferredProvider) {
         this.preferredProvider = preferredProvider;
         this.hostURL = hostURL;
         requireWebDriver();
     }
 
-    private WebDriver requireWebDriver(){
-        if (driver == null){
+    private static Object executeScript(WebDriver driver, String script, Object... objects) throws JavascriptNotSupported {
+        if (driver instanceof JavascriptExecutor) {
+            return ((JavascriptExecutor) driver).executeScript(script, objects);
+        } else {
+            throw new JavascriptNotSupported();
+        }
+    }
+
+    private static RemoteWebDriver createWebDriver(WebDriverProvider provider) {
+        RemoteWebDriver driver;
+
+        switch (provider) {
+            case EDGE:
+                WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+                break;
+            case IEXPLORER:
+                WebDriverManager.iedriver().setup();
+                driver = new InternetExplorerDriver();
+                break;
+            case FIREFOX:
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+                break;
+            default:
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+                break;
+        }
+        return driver;
+    }
+
+    private WebDriver requireWebDriver() {
+        if (driver == null) {
             driver = createWebDriver(preferredProvider);
         }
         return driver;
     }
 
-    protected String getFullUrl(String relativePath){
-        if (relativePath == null){
+    protected String getFullUrl(String relativePath) {
+        if (relativePath == null) {
             return null;
         }
-        return hostURL+(relativePath.startsWith("/") ? "" : "/")+relativePath;
+        return hostURL + (relativePath.startsWith("/") ? "" : "/") + relativePath;
     }
 
-    protected String getRelativeUrl(String fullUrl){
-        if (fullUrl == null){
+    protected String getRelativeUrl(String fullUrl) {
+        if (fullUrl == null) {
             return null;
         }
         String host = hostURL;
-        if (fullUrl.toLowerCase().startsWith(host.toLowerCase())){
+        if (fullUrl.toLowerCase().startsWith(host.toLowerCase())) {
             return fullUrl.substring(host.length());
         }
         return fullUrl;
@@ -76,7 +110,7 @@ public class RelativeWebDriver implements  WebDriver {
         return requireWebDriver().getPageSource();
     }
 
-    public void close(){
+    public void close() {
         requireWebDriver().close();
     }
 
@@ -104,18 +138,18 @@ public class RelativeWebDriver implements  WebDriver {
         return requireWebDriver().manage();
     }
 
-    public void maximizeWindow(){
+    public void maximizeWindow() {
         manage().window().maximize();
     }
 
-    public void get(String path, boolean waitDocumentReady){
+    public void get(String path, boolean waitDocumentReady) {
         requireWebDriver().get(getFullUrl(path));
-        if (waitDocumentReady){
+        if (waitDocumentReady) {
             this.waitDocumentReady();
         }
     }
 
-    public void waitDocumentReady(){
+    public void waitDocumentReady() {
         try {
             Thread.sleep(200); //MaybeWait after some click or stuff
         } catch (InterruptedException e) {
@@ -135,59 +169,22 @@ public class RelativeWebDriver implements  WebDriver {
         return executeScript(this.requireWebDriver(), script, objects);
     }
 
-    private static Object executeScript(WebDriver driver, String script, Object... objects) throws JavascriptNotSupported {
-        if (driver instanceof JavascriptExecutor){
-            return ((JavascriptExecutor) driver).executeScript(script, objects);
-        } else {
-            throw new JavascriptNotSupported();
-        }
-    }
-
-    public static class JavascriptNotSupported extends Exception {}
-
-    private static RemoteWebDriver createWebDriver(WebDriverProvider provider){
-        RemoteWebDriver driver;
-
-        switch (provider){
-            case EDGE:
-                WebDriverManager.edgedriver().setup();
-                driver = new EdgeDriver();
-                break;
-            case IEXPLORER:
-                WebDriverManager.iedriver().setup();
-                driver = new InternetExplorerDriver();
-                break;
-            case FIREFOX:
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-                break;
-            default:
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver();
-                break;
-        }
-        return driver;
-    }
-
-
-    private Set<String> stashedHandles = null;
-    public void stashHandles(){
+    public void stashHandles() {
         stashedHandles = getWindowHandles();
     }
 
-    private String latestHandle = null;
-    public void switchToLatestHandle(){
+    public void switchToLatestHandle() {
         latestHandle = getWindowHandle();
-        for (String handle : getWindowHandles()){
-            if (stashedHandles != null && stashedHandles.contains(handle)){
+        for (String handle : getWindowHandles()) {
+            if (stashedHandles != null && stashedHandles.contains(handle)) {
                 continue;
             }
             switchTo().window(handle);
         }
     }
 
-    public void closeBackToLatestWindow(){
-        if (latestHandle == null){
+    public void closeBackToLatestWindow() {
+        if (latestHandle == null) {
             throw new RuntimeException("Cannot get the latest handle");
         }
         close();
@@ -195,17 +192,18 @@ public class RelativeWebDriver implements  WebDriver {
         latestHandle = null;
     }
 
-    public boolean hasNewWindows(){
+    public boolean hasNewWindows() {
         return stashedHandles != null && getWindowHandles().size() > stashedHandles.size();
     }
-
-
 
     public enum WebDriverProvider {
         CHROME,
         FIREFOX,
         EDGE,
         IEXPLORER
+    }
+
+    public static class JavascriptNotSupported extends Exception {
     }
 
 }

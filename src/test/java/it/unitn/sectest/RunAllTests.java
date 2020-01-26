@@ -7,18 +7,11 @@ import org.junit.platform.launcher.core.LauncherFactory;
 import org.junit.platform.launcher.listeners.SummaryGeneratingListener;
 import org.junit.platform.launcher.listeners.TestExecutionSummary;
 import utils.BaseTest;
-import utils.GenericUtils;
-import utils.Logging;
 
 import java.io.PrintWriter;
 
 import static org.junit.platform.engine.discovery.ClassNameFilter.includeClassNamePatterns;
 import static org.junit.platform.engine.discovery.DiscoverySelectors.selectPackage;
-
-/**
- * Hello world!
- *
- */
 
 public class RunAllTests {
 
@@ -40,7 +33,6 @@ public class RunAllTests {
         BaseTest.quitHelper();
         return listener;
     }
-
 
 
 }

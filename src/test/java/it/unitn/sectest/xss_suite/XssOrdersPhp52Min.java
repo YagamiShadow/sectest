@@ -13,14 +13,14 @@ public class XssOrdersPhp52Min extends BaseTest {
     public void test() {
         XssPayload payload = XssPayload.genDoubleQuoteAttributePayload("input", true);
         helper.requireLoginAdmin();
-        orderId = helper.createOrder(GenericUtils.dateString(0), "dummy", "dummy", "100", "22", "100", "0", "100", "0", "100", 0, 0, 0, "'"+payload.toString()+"'", "-1");
+        orderId = helper.createOrder(GenericUtils.dateString(0), "dummy", "dummy", "100", "22", "100", "0", "100", "0", "100", 0, 0, 0, "'" + payload.toString() + "'", "-1");
         helper.get(ProcedureHelper.ORDERS_EDIT_URL(orderId));
         assert payload.isInDocument(helper);
     }
 
     @Override
     public void clean() {
-        if (orderId != null){
+        if (orderId != null) {
             helper.deleteOrder(orderId);
             orderId = null;
         }

@@ -8,32 +8,32 @@ import okhttp3.RequestBody;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.text.DateFormat;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.*;
 
 public class GenericUtils {
-    public static String composeUrl(String baseUrl, String... getParams){
-        if (getParams.length == 0 || baseUrl == null){
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy").withLocale(Locale.getDefault()).withZone(ZoneId.systemDefault());
+
+    public static String composeUrl(String baseUrl, String... getParams) {
+        if (getParams.length == 0 || baseUrl == null) {
             return baseUrl;
         }
-        if (!baseUrl.endsWith("&") && !baseUrl.endsWith("?")){
-            if (baseUrl.contains("?")){
-                baseUrl+="&";
+        if (!baseUrl.endsWith("&") && !baseUrl.endsWith("?")) {
+            if (baseUrl.contains("?")) {
+                baseUrl += "&";
             } else {
-                baseUrl+="?";
+                baseUrl += "?";
             }
         }
-        return baseUrl+serializeParameters(getParams);
+        return baseUrl + serializeParameters(getParams);
     }
 
-    public static String serializeParameters(Object[] params){
+    public static String serializeParameters(Object[] params) {
         List<Object> pList = Arrays.asList(params);
-        if (pList.size() % 2 != 0){
+        if (pList.size() % 2 != 0) {
             pList.add("");
         }
         StringBuilder builder = new StringBuilder();
@@ -44,13 +44,13 @@ public class GenericUtils {
                     builder.append('&');
                 }
             }
-        } catch (UnsupportedEncodingException e){
+        } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
         return builder.toString();
     }
 
-    public static String genRandomString(int length){
+    public static String genRandomString(int length) {
 
         int leftLimit = 97; // letter 'a'
         int rightLimit = 122; // letter 'z'
@@ -63,17 +63,17 @@ public class GenericUtils {
 
     }
 
-    public static MultipartBody serializeMultipart(Object... params){
+    public static MultipartBody serializeMultipart(Object... params) {
         List<Object> pList = Arrays.asList(params);
-        if (pList.size() % 2 != 0){
+        if (pList.size() % 2 != 0) {
             pList.add("");
         }
         MultipartBody.Builder builder = new MultipartBody.Builder();
         for (int i = 0; i < pList.size(); i += 2) {
             String name = String.valueOf(pList.get(i));
-            Object value = pList.get(i+1);
-            if (value instanceof byte[]){
-                builder.addPart(Headers.of("Content-Disposition","form-data; name=\""+name+"\"; filename=\""+name+".png\""), RequestBody.create(MediaType.parse("image/png"), (byte[]) value));
+            Object value = pList.get(i + 1);
+            if (value instanceof byte[]) {
+                builder.addPart(Headers.of("Content-Disposition", "form-data; name=\"" + name + "\"; filename=\"" + name + ".png\""), RequestBody.create(MediaType.parse("image/png"), (byte[]) value));
             } else {
                 builder.addFormDataPart(name, String.valueOf(value));
             }
@@ -81,16 +81,13 @@ public class GenericUtils {
         return builder.setType(MediaType.get("multipart/form-data")).build();
     }
 
-
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy").withLocale(Locale.getDefault()).withZone(ZoneId.systemDefault());
-
-    public static String dateString(int daysAdd){
+    public static String dateString(int daysAdd) {
         return DATE_TIME_FORMATTER.format(Instant.now().plus(daysAdd, ChronoUnit.DAYS));
     }
 
-    public static <T> List<T> listOf(T obj, int times){
+    public static <T> List<T> listOf(T obj, int times) {
         List<T> list = new ArrayList<>(times);
-        for (int i = 0; i<times; ++i){
+        for (int i = 0; i < times; ++i) {
             list.add(obj);
         }
         return list;
