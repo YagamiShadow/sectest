@@ -132,7 +132,7 @@ public class RelativeWebDriver implements  WebDriver {
     }
 
     public Object executeScript(String script, Object... objects) throws JavascriptNotSupported {
-        return executeScript(this, script, objects);
+        return executeScript(this.requireWebDriver(), script, objects);
     }
 
     private static Object executeScript(WebDriver driver, String script, Object... objects) throws JavascriptNotSupported {
@@ -147,6 +147,7 @@ public class RelativeWebDriver implements  WebDriver {
 
     private static RemoteWebDriver createWebDriver(WebDriverProvider provider){
         RemoteWebDriver driver;
+
         switch (provider){
             case EDGE:
                 WebDriverManager.edgedriver().setup();
@@ -169,6 +170,34 @@ public class RelativeWebDriver implements  WebDriver {
     }
 
 
+    private Set<String> stashedHandles = null;
+    public void stashHandles(){
+        stashedHandles = getWindowHandles();
+    }
+
+    private String latestHandle = null;
+    public void switchToLatestHandle(){
+        latestHandle = getWindowHandle();
+        for (String handle : getWindowHandles()){
+            if (stashedHandles != null && stashedHandles.contains(handle)){
+                continue;
+            }
+            switchTo().window(handle);
+        }
+    }
+
+    public void closeBackToLatestWindow(){
+        if (latestHandle == null){
+            throw new RuntimeException("Cannot get the latest handle");
+        }
+        close();
+        switchTo().window(latestHandle);
+        latestHandle = null;
+    }
+
+    public boolean hasNewWindows(){
+        return stashedHandles != null && getWindowHandles().size() > stashedHandles.size();
+    }
 
 
 

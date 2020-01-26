@@ -8,9 +8,13 @@ import okhttp3.RequestBody;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.text.DateFormat;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
+import java.util.*;
 
 public class GenericUtils {
     public static String composeUrl(String baseUrl, String... getParams){
@@ -75,5 +79,21 @@ public class GenericUtils {
             }
         }
         return builder.setType(MediaType.get("multipart/form-data")).build();
+    }
+
+
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MM/dd/yyyy").withLocale(Locale.getDefault()).withZone(ZoneId.systemDefault());
+
+    public static String dateString(int daysAdd){
+        return DATE_TIME_FORMATTER.format(Instant.now().plus(daysAdd, ChronoUnit.DAYS));
+    }
+
+    public static <T> List<T> listOf(T obj, int times){
+        List<T> list = new ArrayList<>(times);
+        for (int i = 0; i<times; ++i){
+            list.add(obj);
+        }
+        return list;
+
     }
 }

@@ -9,22 +9,33 @@ import java.util.Random;
 public class XssPayload {
 
     public static XssPayload genOptionPayload(){
-        return genCustomXssPayload("Almost hacked</option></select>", "<select style=\"display: none\"><option>");
+        return genCustomXssPayload("Almost vulnerable</option></select>", "<select style=\"display: none\"><option>");
     }
 
     public static XssPayload genPlainPayload(){
         return genCustomXssPayload("","");
     }
+
+    public static XssPayload genDoubleQuoteAttributePayload(String tagname, boolean singletag){
+        return getAttributeEscapePayload(tagname, "\"", singletag);
+    }
+    public static XssPayload genSingleQuoteAttributePayload(String tagname, boolean singletag){
+        return getAttributeEscapePayload(tagname, "'", singletag);
+    }
     public static XssPayload genDoubleQuoteAttributePayload(String tagname){
-        return genCustomXssPayload("\"></"+tagname+">", "<"+tagname+" data-fakeattrib=\"");
+        return genDoubleQuoteAttributePayload(tagname, false);
     }
     public static XssPayload genSingleQuoteAttributePayload(String tagname){
-        return genCustomXssPayload("'></"+tagname+">", "<"+tagname+" data-fakeattrib='");
+        return genSingleQuoteAttributePayload(tagname, false);
+    }
+
+    private static XssPayload getAttributeEscapePayload(String tagname, String escape, boolean singletag){
+        return genCustomXssPayload(escape+(singletag ? "/>" : "></"+tagname+">"), "<"+tagname+" style=\"display: none\" data-fakeattrib="+escape);
     }
 
     public static XssPayload genCustomXssPayload(String prefix, String suffix){
         String identifier = generateIdentifier();
-        String payload =  prefix+"<a id=\""+identifier+"\" href=\"http://www.maliciouslink.com\">"+identifier+"</a>"+suffix;
+        String payload =  prefix+"<script id=\""+identifier+"\">vulnerable = true;</script>"+suffix;
         return new XssPayload(payload, identifier);
     }
 
@@ -39,8 +50,10 @@ public class XssPayload {
     public boolean isInDocument(WebDriver driver){
         try {
             driver.findElement(By.id(identifier));
+            Logging.i("Payload in document: "+identifier);
             return true;
         } catch (NoSuchElementException e){
+            Logging.w("Payload NOT in document: "+identifier);
             return false;
         }
     }

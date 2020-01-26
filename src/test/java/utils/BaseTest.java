@@ -27,15 +27,19 @@ public abstract class BaseTest {
 
 	@AfterEach
 	public void after(){
-		try {
-			clean();
-		} catch (Exception e){
-			Logging.e("Failed to clean test "+this.getClass().getSimpleName(), e);
-		}
+		cleanSafely();
 	}
 
 	public void clean(){
 
+	}
+
+	protected void cleanSafely(){
+		try {
+			this.clean();
+		} catch (Exception e){
+			Logging.e("Failed to clean test "+this.getClass().getSimpleName(), e);
+		}
 	}
 
 

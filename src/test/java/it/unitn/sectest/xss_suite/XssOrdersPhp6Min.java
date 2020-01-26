@@ -12,8 +12,7 @@ public class XssOrdersPhp6Min extends BaseTest {
     public void test(){
         helper.requireLoginAdmin();
         XssPayload payload = XssPayload.genPlainPayload();
-        String path = GenericUtils.composeUrl(ProcedureHelper.ORDERS_PATH, "o", "editOrd", "i", payload.toString());
-        helper.get(path);
+        helper.get(ProcedureHelper.ORDERS_EDIT_URL(payload.toString()));
         assert payload.isInDocument(helper);
     }
 }
