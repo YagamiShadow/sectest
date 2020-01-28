@@ -8,6 +8,12 @@ import utils.XssPayload;
 public class XssOrdersPhp27Min extends BaseTest {
     private Integer orderId, productId;
 
+    /*
+    Attack description:
+    - create product with option/select escape xss payload as name
+    - create order with that specific product
+    - go to the order edit url for that specific order
+     */
     @Test
     public void test() {
         XssPayload payload = XssPayload.genOptionPayload();

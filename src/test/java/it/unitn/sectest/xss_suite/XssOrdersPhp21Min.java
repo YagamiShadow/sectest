@@ -8,6 +8,11 @@ import utils.XssPayload;
 public class XssOrdersPhp21Min extends BaseTest {
     private Integer orderId;
 
+    /*
+    Attack description:
+    - create order with double quote attribute escape xss payload as clientName
+    - go to the orders edit url for that specific order
+     */
     @Test
     public void test() {
         XssPayload payload = XssPayload.genDoubleQuoteAttributePayload("input", true);

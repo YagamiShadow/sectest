@@ -9,6 +9,11 @@ import utils.XssPayload;
 public class XssDashboardPhp10Min extends BaseTest {
     private Integer orderId, userId;
 
+    /*
+    Attack description:
+    - create user with plain xss payload as username
+    - login as admin and go to dashboard page
+     */
     @Test
     public void test() {
         XssPayload payload = XssPayload.genPlainPayload();
@@ -16,7 +21,6 @@ public class XssDashboardPhp10Min extends BaseTest {
         userId = helper.getUserId(payload.toString());
         helper.requireLogin(payload.toString());
         orderId = helper.createDummyOrder();
-        Logging.i(orderId + " - " + payload);
         helper.requireLoginAdmin();
         helper.get(ProcedureHelper.DASHBOARD_PATH);
         assert payload.isInDocument(helper);

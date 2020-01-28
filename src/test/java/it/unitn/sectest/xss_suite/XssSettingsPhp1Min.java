@@ -8,7 +8,12 @@ import utils.XssPayload;
 public class XssSettingsPhp1Min extends BaseTest {
     private String username;
 
-
+    /*
+    Attack description:
+    - create user with quotes attribute escape xss payload as name
+    - login with that username
+    - go to the setting page url
+     */
     @Test
     public void test() {
         helper.requireLoginAdmin();

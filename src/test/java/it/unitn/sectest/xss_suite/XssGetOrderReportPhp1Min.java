@@ -13,6 +13,12 @@ public class XssGetOrderReportPhp1Min extends BaseTest {
     private boolean switched = false;
     private Integer orderId;
 
+    /*
+    Attack description:
+    - create order with plain xss payload as clientName
+    - generate report of that specific order
+    - payload will be in the report html
+     */
     @Test
     public void testB() {
         XssPayload payload = XssPayload.genPlainPayload();
@@ -20,6 +26,12 @@ public class XssGetOrderReportPhp1Min extends BaseTest {
         assert payload.isInDocument(helper);
     }
 
+    /*
+    Attack description:
+    - create order with plain xss payload as clientContact
+    - generate report of that specific order
+    - payload will be in the report html
+     */
     @Test
     public void testC() {
         XssPayload payload = XssPayload.genPlainPayload();

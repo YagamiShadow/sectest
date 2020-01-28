@@ -7,6 +7,13 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     private Integer orderId, productId;
     private boolean switched = false;
 
+    /*
+    Attack description:
+    - create order with plain xss payload as "clientName"
+    - go to manage orders url
+    - print report of that specific order
+    - payload will be in the report window html
+     */
     @Test
     public void testA() {
         XssPayload payload = XssPayload.genPlainPayload();
@@ -15,6 +22,13 @@ public class XssPrintOrderPhp1Min extends BaseTest {
         testPrintOrder(orderId, payload);
     }
 
+    /*
+    Attack description:
+    - create order with plain xss payload as "gstn"
+    - go to manage orders url
+    - print report of that specific order
+    - payload will be in the report window html
+     */
     @Test
     public void testB() {
         XssPayload payload = XssPayload.genPlainPayload();
@@ -23,6 +37,13 @@ public class XssPrintOrderPhp1Min extends BaseTest {
         testPrintOrder(orderId, payload);
     }
 
+    /*
+    Attack description:
+    - create order with plain xss payload as "clientContact"
+    - go to manage orders url
+    - print report of that specific order
+    - payload will be in the report window html
+     */
     @Test
     public void testC() {
         XssPayload payload = XssPayload.genPlainPayload();
@@ -31,6 +52,14 @@ public class XssPrintOrderPhp1Min extends BaseTest {
         testPrintOrder(orderId, payload);
     }
 
+    /*
+    Attack description:
+    - create product
+    - create order with that specific product and "rate" set to plain xss payload
+    - go to manage orders url
+    - print report of that specific order
+    - payload will be in the report window html
+     */
     @Test
     public void testE() {
         XssPayload payload = XssPayload.genPlainPayload();
@@ -40,6 +69,14 @@ public class XssPrintOrderPhp1Min extends BaseTest {
         testPrintOrder(orderId, payload);
     }
 
+    /*
+    Attack description:
+    - create product
+    - create order with that specific product and "quantity" set to plain xss payload
+    - go to manage orders url
+    - print report of that specific order
+    - payload will be in the report window html
+     */
     @Test
     public void testF() {
         XssPayload payload = XssPayload.genPlainPayload();
@@ -49,6 +86,14 @@ public class XssPrintOrderPhp1Min extends BaseTest {
         testPrintOrder(orderId, payload);
     }
 
+    /*
+    Attack description:
+    - create product
+    - create order with that specific product and "totalValue" set to plain xss payload
+    - go to manage orders url
+    - print report of that specific order
+    - payload will be in the report window html
+     */
     @Test
     public void testG() {
         XssPayload payload = XssPayload.genPlainPayload();
@@ -58,6 +103,14 @@ public class XssPrintOrderPhp1Min extends BaseTest {
         testPrintOrder(orderId, payload);
     }
 
+    /*
+    Attack description:
+    - create product with plain xss payload as name
+    - create order with that specific product
+    - go to manage orders url
+    - print report of that specific order
+    - payload will be in the report window html
+     */
     @Test
     public void testH() {
         XssPayload payload = XssPayload.genPlainPayload();
@@ -100,6 +153,11 @@ public class XssPrintOrderPhp1Min extends BaseTest {
         cleanSafely();
         testE();
         cleanSafely();
+        testF();
+        cleanSafely();
+        testG();
+        cleanSafely();
+        testH();
     }
 
 

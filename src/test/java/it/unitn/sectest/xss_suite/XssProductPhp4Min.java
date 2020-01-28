@@ -8,6 +8,11 @@ import utils.XssPayload;
 public class XssProductPhp4Min extends BaseTest {
     private Integer categoryId;
 
+    /*
+    Attack description:
+    - create category with option/select escape xss payload as "name"
+    - go to the product page url
+     */
     @Test
     public void test() {
         XssPayload payload = XssPayload.genOptionPayload();

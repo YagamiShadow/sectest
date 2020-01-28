@@ -9,6 +9,12 @@ import utils.XssPayload;
 public class XssOrdersPhp29Min extends BaseTest {
     private Integer orderId, productId;
 
+    /*
+    Attack description:
+    - create product
+    - create order with that specific product and "rate" set to quotes attribute escape xss payload
+    - go to the order edit url for that specific order
+     */
     @Test
     public void test() {
         XssPayload payload = XssPayload.genDoubleQuoteAttributePayload("input", true);

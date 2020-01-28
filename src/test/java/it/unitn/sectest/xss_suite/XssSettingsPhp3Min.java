@@ -9,7 +9,13 @@ import utils.XssPayload;
 public class XssSettingsPhp3Min extends BaseTest {
     private Integer userId;
 
-
+    /*
+    Attack description:
+    - create random user
+    - login with that username
+    - change the bio to a quotes attribute escape xss payload
+    - go to the setting page url
+     */
     @Test
     public void test() {
         helper.requireLoginAdmin();

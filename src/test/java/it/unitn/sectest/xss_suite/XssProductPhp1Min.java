@@ -8,6 +8,11 @@ import utils.XssPayload;
 public class XssProductPhp1Min extends BaseTest {
     private Integer brandId;
 
+    /*
+    Attack description:
+    - create brand with option/select escape xss payload as "name"
+    - go to the product page url
+     */
     @Test
     public void test() {
         XssPayload payload = XssPayload.genOptionPayload();

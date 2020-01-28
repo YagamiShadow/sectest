@@ -27,6 +27,7 @@ public abstract class BaseTest {
 
     @AfterEach
     public void after() {
+        registerShutdownHook();
         cleanSafely();
     }
 
@@ -49,6 +50,25 @@ public abstract class BaseTest {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private static boolean shutDownHookRegistered = false;
+
+    private void registerShutdownHook() {
+        if (shutDownHookRegistered) {
+            return;
+        }
+        shutDownHookRegistered = true;
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    ProcedureHelper.quitInstance();
+                } catch (Exception e) {
+                    Logging.e("Did not quit helper before shutdown", e);
+                }
+            }
+        }));
     }
 
 }

@@ -7,6 +7,10 @@ import utils.XssPayload;
 
 public class XssOrdersPhp6Min extends BaseTest {
 
+    /*
+    Attack description:
+    - go to the order edit url and replace get parameter "i" with plain xss payload
+     */
     @Test
     public void test() {
         helper.requireLoginAdmin();
