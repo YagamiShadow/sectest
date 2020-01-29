@@ -9,13 +9,28 @@ public class XssPrintOrderPhp1Min extends BaseTest {
 
     /*
     Attack description:
-    - create order with plain xss payload as "clientName"
+    - create order with plain xss payload as "subTotal"
     - go to manage orders url
     - print report of that specific order
     - payload will be in the report window html
      */
     @Test
     public void testA() {
+        XssPayload payload = XssPayload.genPlainPayload();
+        helper.requireLoginAdmin();
+        orderId = helper.createOrder(GenericUtils.dateString(0), "dummy", "dummy", payload.toString(), "22", "100", "0", "100", "0", "100", 0, 0, 0, "22", "-1");
+        testPrintOrder(orderId, payload);
+    }
+
+    /*
+    Attack description:
+    - create order with plain xss payload as "clientName"
+    - go to manage orders url
+    - print report of that specific order
+    - payload will be in the report window html
+     */
+    @Test
+    public void testB() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
         orderId = helper.createDummyOrder(payload.toString(), "dummy");
@@ -30,7 +45,7 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     - payload will be in the report window html
      */
     @Test
-    public void testB() {
+    public void testC() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
         orderId = helper.createOrder(GenericUtils.dateString(0), "dummy", "dummy", "100", "22", "100", "0", "100", "0", "100", 0, 0, 0, "'" + payload.toString() + "'", "-1");
@@ -45,7 +60,7 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     - payload will be in the report window html
      */
     @Test
-    public void testC() {
+    public void testD() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
         orderId = helper.createDummyOrder("dummy", payload.toString());
@@ -61,7 +76,7 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     - payload will be in the report window html
      */
     @Test
-    public void testE() {
+    public void testF() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
         productId = helper.createDummyProduct("dummy");
@@ -78,7 +93,7 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     - payload will be in the report window html
      */
     @Test
-    public void testF() {
+    public void testG() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
         productId = helper.createDummyProduct("dummy");
@@ -95,7 +110,7 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     - payload will be in the report window html
      */
     @Test
-    public void testG() {
+    public void testH() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
         productId = helper.createDummyProduct("dummy");
@@ -112,7 +127,7 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     - payload will be in the report window html
      */
     @Test
-    public void testH() {
+    public void testI() {
         XssPayload payload = XssPayload.genPlainPayload();
         helper.requireLoginAdmin();
         productId = helper.createDummyProduct(payload.toString());
@@ -151,13 +166,16 @@ public class XssPrintOrderPhp1Min extends BaseTest {
         cleanSafely();
         testC();
         cleanSafely();
-        testE();
+        testD();
         cleanSafely();
         testF();
         cleanSafely();
         testG();
         cleanSafely();
         testH();
+        cleanSafely();
+        testI();
+        cleanSafely();
     }
 
 

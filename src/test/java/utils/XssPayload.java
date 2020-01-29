@@ -3,6 +3,7 @@ package utils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class XssPayload {
 
@@ -55,13 +56,30 @@ public class XssPayload {
         return text.contains(identifier);
     }
 
-    public boolean isInDocument(WebDriver driver) {
+    public boolean isInDocument(WebDriver driver){
+        return isInDocumentOrElement(driver, null);
+    }
+
+    public boolean isInElement(WebElement element){
+        return isInDocumentOrElement(null, element);
+    }
+
+    public boolean isTheElement(WebElement element){
+        return identifier.equals(element.getAttribute("id"));
+    }
+
+    private boolean isInDocumentOrElement(WebDriver driver, WebElement parentElement) {
+        String where = parentElement == null ? "document" : "element";
         try {
-            driver.findElement(By.id(identifier));
-            Logging.i("Payload in document: " + identifier);
+            if (parentElement == null) {
+                driver.findElement(By.id(identifier));
+            } else {
+                parentElement.findElement(By.id(identifier));
+            }
+            Logging.i("Payload in "+where+": " + identifier);
             return true;
         } catch (NoSuchElementException e) {
-            Logging.w("Payload NOT in document: " + identifier);
+            Logging.w("Payload NOT in "+where+": " + identifier);
             return false;
         }
     }

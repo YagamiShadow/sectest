@@ -1,12 +1,14 @@
 package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utils.BaseTest;
 import utils.GenericUtils;
 import utils.ProcedureHelper;
 import utils.XssPayload;
 
-public class XssSettingsPhp3Min extends BaseTest {
+public class XssSettingPhp3Min extends BaseTest {
     private Integer userId;
 
     /*
@@ -26,7 +28,7 @@ public class XssSettingsPhp3Min extends BaseTest {
         userId = helper.getUserId(username);
         helper.changeBio(userId, payload.toString());
         helper.get(ProcedureHelper.SETTING_URL);
-        assert payload.isInDocument(helper);
+        assertPayloadNextTo(payload, "bio");
     }
 
     @Override

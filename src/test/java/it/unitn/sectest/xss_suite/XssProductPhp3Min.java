@@ -1,7 +1,9 @@
 package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import utils.BaseTest;
+import utils.GenericUtils;
 import utils.ProcedureHelper;
 import utils.XssPayload;
 
@@ -19,7 +21,7 @@ public class XssProductPhp3Min extends BaseTest {
         helper.requireLoginAdmin();
         brandId = helper.createBrand(payload.toString());
         helper.get(ProcedureHelper.PRODUCT_URL);
-        assert payload.isInDocument(helper);
+        assert payload.isInElement(GenericUtils.parentOf(helper.findElement(By.id("editBrandName"))));
     }
 
     @Override

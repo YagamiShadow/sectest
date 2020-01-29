@@ -24,7 +24,7 @@ public class XssFetchProductDataPhp1Min extends BaseTest {
         helper.get(ProcedureHelper.ORDERS_ADD_URL);
         helper.findElement(By.id("addRowBtn")).click();
         sleep(100);
-        assert payload.isInDocument(helper);
+        assert payload.isInElement(helper.findElement(By.id("row4")));
     }
 
     @Override

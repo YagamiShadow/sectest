@@ -16,6 +16,9 @@ import static org.junit.platform.engine.discovery.DiscoverySelectors.selectPacka
 public class RunAllTests {
 
     public static void main(String[] args) {
+        if (args.length > 0){
+            BaseTest.USE_HOST = args[0];
+        }
         TestExecutionSummary summary = runAll().getSummary();
         summary.printTo(new PrintWriter(System.out));
     }

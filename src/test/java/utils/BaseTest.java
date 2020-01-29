@@ -4,9 +4,12 @@ package utils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 
 public abstract class BaseTest {
+    public static String USE_HOST = null;
     protected ProcedureHelper helper;
 
     public static void quitHelper() {
@@ -20,7 +23,11 @@ public abstract class BaseTest {
 
     @BeforeEach
     public void prepareHelper() {
-        helper = ProcedureHelper.requireInstance();
+        if (USE_HOST == null) {
+            helper = ProcedureHelper.requireInstance();
+        } else {
+            helper = ProcedureHelper.requireInstance(USE_HOST);
+        }
     }
 
     public abstract void test();
@@ -69,6 +76,12 @@ public abstract class BaseTest {
                 }
             }
         }));
+    }
+
+    protected void assertPayloadNextTo(XssPayload payload, String elementId){
+        WebElement payloadElement = GenericUtils.elementNextTo(helper.findElement(By.id(elementId)));
+        assert payloadElement != null;
+        assert payload.isTheElement(payloadElement);
     }
 
 }

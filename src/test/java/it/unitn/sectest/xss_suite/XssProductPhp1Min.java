@@ -1,9 +1,9 @@
 package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
-import utils.BaseTest;
-import utils.ProcedureHelper;
-import utils.XssPayload;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import utils.*;
 
 public class XssProductPhp1Min extends BaseTest {
     private Integer brandId;
@@ -19,7 +19,7 @@ public class XssProductPhp1Min extends BaseTest {
         helper.requireLoginAdmin();
         brandId = helper.createBrand(payload.toString());
         helper.get(ProcedureHelper.PRODUCT_URL);
-        assert payload.isInDocument(helper);
+        assert payload.isInElement(GenericUtils.parentOf(helper.findElement(By.id("brandName"))));
     }
 
     @Override

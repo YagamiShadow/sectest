@@ -1,6 +1,8 @@
 package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utils.BaseTest;
 import utils.GenericUtils;
 import utils.ProcedureHelper;
@@ -18,6 +20,6 @@ public class XssOrdersPhp64Min extends BaseTest {
         XssPayload payload = XssPayload.genDoubleQuoteAttributePayload("input");
         String path = ProcedureHelper.ORDERS_EDIT_URL(payload.toString());
         helper.get(path);
-        assert payload.isInDocument(helper);
+        assertPayloadNextTo(payload, "orderId");
     }
 }

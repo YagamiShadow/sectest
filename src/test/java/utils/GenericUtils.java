@@ -4,6 +4,9 @@ import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import org.apache.commons.lang3.SystemUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -92,5 +95,31 @@ public class GenericUtils {
         }
         return list;
 
+    }
+
+    public static WebElement elementNextTo(WebElement element){
+        List<WebElement> siblings = element.findElements(By.xpath("./../*"));
+        boolean next = false;
+        for (WebElement e : siblings){
+            if (next){
+                return e;
+            }
+            if (element.equals(e)){
+                next = true;
+            }
+        }
+        return null;
+    }
+
+    public static WebElement parentOf(WebElement element){
+        return element.findElement(By.xpath("./.."));
+    }
+
+    public static String urlEncode(String data){
+        try {
+            return URLEncoder.encode(data, StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

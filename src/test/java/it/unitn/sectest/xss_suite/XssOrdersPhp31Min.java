@@ -1,6 +1,8 @@
 package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import utils.BaseTest;
 import utils.GenericUtils;
 import utils.ProcedureHelper;
@@ -22,7 +24,7 @@ public class XssOrdersPhp31Min extends BaseTest {
         productId = helper.createDummyProduct("dummy");
         orderId = helper.createDummyOrderProductDetail(GenericUtils.dateString(0), "dummy", "dummy", productId, "1", payload.toString(), "100");
         helper.get(ProcedureHelper.ORDERS_EDIT_URL(orderId));
-        assert payload.isInDocument(helper);
+        assertPayloadNextTo(payload, "rateValue1");
     }
 
     @Override

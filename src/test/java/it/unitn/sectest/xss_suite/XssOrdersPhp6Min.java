@@ -1,6 +1,7 @@
 package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import utils.BaseTest;
 import utils.ProcedureHelper;
 import utils.XssPayload;
@@ -16,6 +17,6 @@ public class XssOrdersPhp6Min extends BaseTest {
         helper.requireLoginAdmin();
         XssPayload payload = XssPayload.genPlainPayload();
         helper.get(ProcedureHelper.ORDERS_EDIT_URL(payload.toString()));
-        assert payload.isInDocument(helper);
+        assert payload.isInElement(helper.findElement(By.xpath("/html/body/div[1]/h4")));
     }
 }
