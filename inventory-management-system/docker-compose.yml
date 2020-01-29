@@ -1,0 +1,25 @@
+mysql_db:
+    build: ./db_init
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "YES"
+    ports:
+      - 3307:3306
+web_original:
+    build: ./original
+    restart: always
+    links:
+      - mysql_db
+    ports:
+      - 80:80
+    environment: 
+        IMS_DB_HOST: mysql_db
+web_patched:
+    build: .\patched
+    restart: always
+    links:
+      - mysql_db
+    ports:
+      - 80:80
+    environment: 
+        IMS_DB_HOST: mysql_db
