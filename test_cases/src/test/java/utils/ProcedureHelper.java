@@ -6,8 +6,6 @@ import org.json.JSONObject;
 import org.openqa.selenium.By;
 
 import javax.security.auth.login.FailedLoginException;
-import java.net.InetSocketAddress;
-import java.net.Proxy;
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.util.*;
