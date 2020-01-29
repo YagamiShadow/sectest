@@ -30,7 +30,7 @@ public class ProcedureHelper extends RelativeWebDriver {
     public static final String PRODUCT_URL = "product.php";
     public static final String SETTING_URL = "setting.php";
     private static final HashMap<String, ProcedureHelper> loaded_instances = new HashMap<String, ProcedureHelper>();
-    private static final String DEFAULT_HOST = "http://localhost/ims";
+    private static final String DEFAULT_HOST = "http://localhost/inventory-management-system";
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:69.0) Gecko/20100101 Firefox/69.0";
     private static final byte[] DUMMY_IMAGE_DATA = Base64.getDecoder().decode("iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAACXBIWXMAAAsTAAALEwEAmpwYAAAGT2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDUgNzkuMTYzNDk5LCAyMDE4LzA4LzEzLTE2OjQwOjIyICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdEV2dD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlRXZlbnQjIiB4bWxuczpwaG90b3Nob3A9Imh0dHA6Ly9ucy5hZG9iZS5jb20vcGhvdG9zaG9wLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOSAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDE5LTEyLTI5VDEzOjEwOjA3KzAxOjAwIiB4bXA6TWV0YWRhdGFEYXRlPSIyMDE5LTEyLTI5VDEzOjEwOjA3KzAxOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxOS0xMi0yOVQxMzoxMDowNyswMTowMCIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDoyNDdlYzUzNy1iN2VhLTU2NGYtYjU5Yy0yMjQ5ZTE2OGE3MjIiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDoxMjE4NmNmOS00ZjhiLWI4NGUtYjViYS02NzEzMmI4NTk3M2IiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo2OTQ0NzE5MC1mY2I3LWRiNDMtYjU5ZS02YmEzNTc1NjBiNDMiIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIGRjOmZvcm1hdD0iaW1hZ2UvcG5nIj4gPHhtcE1NOkhpc3Rvcnk+IDxyZGY6U2VxPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0iY3JlYXRlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo2OTQ0NzE5MC1mY2I3LWRiNDMtYjU5ZS02YmEzNTc1NjBiNDMiIHN0RXZ0OndoZW49IjIwMTktMTItMjlUMTM6MTA6MDcrMDE6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE5IChXaW5kb3dzKSIvPiA8cmRmOmxpIHN0RXZ0OmFjdGlvbj0ic2F2ZWQiIHN0RXZ0Omluc3RhbmNlSUQ9InhtcC5paWQ6MjQ3ZWM1MzctYjdlYS01NjRmLWI1OWMtMjI0OWUxNjhhNzIyIiBzdEV2dDp3aGVuPSIyMDE5LTEyLTI5VDEzOjEwOjA3KzAxOjAwIiBzdEV2dDpzb2Z0d2FyZUFnZW50PSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOSAoV2luZG93cykiIHN0RXZ0OmNoYW5nZWQ9Ii8iLz4gPC9yZGY6U2VxPiA8L3htcE1NOkhpc3Rvcnk+IDxwaG90b3Nob3A6VGV4dExheWVycz4gPHJkZjpCYWc+IDxyZGY6bGkgcGhvdG9zaG9wOkxheWVyTmFtZT0iUCIgcGhvdG9zaG9wOkxheWVyVGV4dD0iUCIvPiA8L3JkZjpCYWc+IDwvcGhvdG9zaG9wOlRleHRMYXllcnM+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+3ITJFgAAAFhJREFUCJl1jsENACEIBBff1gF92Kd92AYF0IW+9x5i4iV38yGBzAQhiS/KHmYmImbWe88LyS25+5wTQESQLLe+1gJQa30ZAFprY4zc3CleZEpVs3CQv3cfwkNAgBJg7XAAAAAASUVORK5CYII=");
     private final OkHttpClient okHttpClient;
@@ -94,8 +94,14 @@ public class ProcedureHelper extends RelativeWebDriver {
         }
     }
 
+    private static void throwIfFalse(boolean condition, String message){
+        if (!condition){
+            throw new RuntimeException(message);
+        }
+    }
+
     private static void assertJsonTrue(String json, String key) {
-        assert new JSONObject(json).getBoolean(key);
+        throwIfFalse(new JSONObject(json).getBoolean(key), "Response key "+key+" not true");
     }
 
     public void login(String username, String password) throws FailedLoginException {
@@ -179,7 +185,7 @@ public class ProcedureHelper extends RelativeWebDriver {
                 return getAllCookies();
             }
         }).followRedirects(false).followSslRedirects(false)
-                .proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8888)))
+                //.proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8888)))
                 .build();
     }
 
@@ -236,7 +242,7 @@ public class ProcedureHelper extends RelativeWebDriver {
 
     public void createUser(String username, String password, String email) {
         Response response = httpPost("php_action/createUser.php", "userName", username, "upassword", password, "uemail", email);
-        assert response.isSuccessful();
+        throwIfFalse(response.isSuccessful(), "response not successful");
         assertJsonTrue(bodyString(response), "success");
     }
 
@@ -271,7 +277,7 @@ public class ProcedureHelper extends RelativeWebDriver {
 
     public void deleteUser(int userId) {
         Response response = httpPost("php_action/removeUser.php", "userid", userId);
-        assert response.isSuccessful();
+        throwIfFalse(response.isSuccessful(), "response not successful");
         assertJsonTrue(bodyString(response), "success");
     }
 
@@ -314,22 +320,22 @@ public class ProcedureHelper extends RelativeWebDriver {
 
         }
         Response response = httpPost("php_action/createOrder.php", list.toArray(new Object[0]));
-        assert response.isSuccessful();
+        throwIfFalse(response.isSuccessful(), "response not successful");
         String body = bodyString(response);
 
         int id = 0;
         try {
             Pattern jsonPatt = Pattern.compile("\\{[^}]+\\}$");
             Matcher m = jsonPatt.matcher(body);
-            assert m.find();
+            throwIfFalse(m.find(), "JSON not found in response");
             body = m.group(0);
             JSONObject object = new JSONObject(body);
-            assert object.getBoolean("success");
+            throwIfFalse(object.getBoolean("success"), "success key is not true");
             id = object.getInt("order_id");
         } catch (Exception e) {
             throw new RuntimeException("Failed to get order_id: " + body, e);
         }
-        assert id > 0;
+        throwIfFalse(id > 0, "Invalid id found");
         return id;
     }
 
@@ -369,7 +375,7 @@ public class ProcedureHelper extends RelativeWebDriver {
 
     public void deleteOrder(int orderId) {
         Response response = httpPost("php_action/removeOrder.php", "orderId", orderId);
-        assert response.isSuccessful();
+        throwIfFalse(response.isSuccessful(), "response is not successful");
         assertJsonTrue(bodyString(response), "success");
     }
 
@@ -383,7 +389,7 @@ public class ProcedureHelper extends RelativeWebDriver {
                 "productStatus", active,
                 "productImage", DUMMY_IMAGE_DATA);
         Response response = httpPost("php_action/createProduct.php", body);
-        assert response.isSuccessful();
+        throwIfFalse(response.isSuccessful(), "response is not successful");
         assertJsonTrue(bodyString(response), "success");
         if (!needProductId) {
             return null;
@@ -422,7 +428,7 @@ public class ProcedureHelper extends RelativeWebDriver {
         JSONArray last = brands.getJSONArray(brands.length() - 1);
         Pattern p = Pattern.compile("editBrands\\((\\d+)\\)");
         Matcher m = p.matcher(last.getString(2));
-        assert m.find();
+        throwIfFalse(m.find(), "failed to find id of brand from button html");
         return Integer.parseInt(m.group(1));
     }
 
@@ -443,10 +449,9 @@ public class ProcedureHelper extends RelativeWebDriver {
         assertJsonTrue(bodyString(httpPost("php_action/createCategories.php", "categoriesName", categoryName, "categoriesStatus", categoryStatus)), "success");
         JSONArray brands = getCategories();
         JSONArray last = brands.getJSONArray(brands.length() - 1);
-        assert categoryName.equals(last.getString(0));
         Pattern p = Pattern.compile("editCategories\\((\\d+)\\)");
         Matcher m = p.matcher(last.getString(2));
-        assert m.find();
+        throwIfFalse(m.find(), "failed to find category id from button html");
         return Integer.parseInt(m.group(1));
     }
 
