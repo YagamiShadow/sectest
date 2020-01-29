@@ -1,0 +1,29 @@
+From 4ae00081f068bccb54d94aabff0c9629c1fff6a8 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 16:47:14 +0100
+Subject: [PATCH 03/36] fix XssGetOrderReportPhp1Min
+
+---
+ php_action/getOrderReport.php | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/php_action/getOrderReport.php b/php_action/getOrderReport.php
+index 756833b..5ee977a 100644
+--- a/php_action/getOrderReport.php
++++ b/php_action/getOrderReport.php
+@@ -30,9 +30,9 @@ if($_POST) {
+ 		while ($result = mysqli_fetch_assoc($query)) {
+ 			$table .= '<tr>
+ 				<td><center>'.$result['order_date'].'</center></td>
+-				<td><center>'.$result['client_name'].'</center></td>
+-				<td><center>'.$result['client_contact'].'</center></td>
+-				<td><center>'.$result['grand_total'].'</center></td>
++				<td><center>'.htmlentities($result['client_name']).'</center></td>
++				<td><center>'.htmlentities($result['client_contact']).'</center></td>
++				<td><center>'.htmlentities($result['grand_total']).'</center></td>
+ 			</tr>';	
+ 			$totalAmount += $result['grand_total'];
+ 		}
+-- 
+2.7.4
+

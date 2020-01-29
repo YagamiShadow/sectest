@@ -1,0 +1,25 @@
+From f1631905ac2ed64426817eb52867262f210830d7 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Wed, 29 Jan 2020 14:19:19 +0100
+Subject: [PATCH 36/36] fix XssIndexPhp2Min
+
+---
+ index.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/index.php b/index.php
+index 8ec2a48..03bec7f 100644
+--- a/index.php
++++ b/index.php
+@@ -97,7 +97,7 @@ if($_POST) {
+ 								} ?>
+ 						</div>
+ 
+-						<form class="form-horizontal" action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post" id="loginForm">
++						<form class="form-horizontal" action="<?php echo htmlentities($_SERVER['PHP_SELF']) ?>" method="post" id="loginForm">
+ 							<fieldset>
+ 							  <div class="form-group">
+ 									<label for="username" class="col-sm-2 control-label">Username</label>
+-- 
+2.7.4
+

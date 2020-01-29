@@ -1,0 +1,25 @@
+From eb8b3660f2e8d560abf1b6622dfb2023f9d29635 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 17:21:46 +0100
+Subject: [PATCH 06/36] fix XssOrdersPhp21Min
+
+---
+ orders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/orders.php b/orders.php
+index e20aff8..efd57b4 100644
+--- a/orders.php
++++ b/orders.php
+@@ -290,7 +290,7 @@ if($_GET['o'] == 'add') {
+ 			  <div class="form-group">
+ 			    <label for="clientName" class="col-sm-2 control-label">Client Name</label>
+ 			    <div class="col-sm-10">
+-			      <input type="text" class="form-control" id="clientName" name="clientName" placeholder="Client Name" autocomplete="off" value="<?php echo $data[2] ?>" />
++			      <input type="text" class="form-control" id="clientName" name="clientName" placeholder="Client Name" autocomplete="off" value="<?php echo htmlentities($data[2]) ?>" />
+ 			    </div>
+ 			  </div> <!--/form-group-->
+ 			  <div class="form-group">
+-- 
+2.7.4
+

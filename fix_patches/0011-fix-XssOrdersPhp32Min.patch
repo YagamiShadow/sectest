@@ -1,0 +1,25 @@
+From 0d4deac9884018fb7fabf093ab40b6f35c4c0989 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 17:39:42 +0100
+Subject: [PATCH 11/36] fix XssOrdersPhp32Min
+
+---
+ orders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/orders.php b/orders.php
+index e712321..52ac53a 100644
+--- a/orders.php
++++ b/orders.php
+@@ -362,7 +362,7 @@ if($_GET['o'] == 'add') {
+ 			  							while($row = mysqli_fetch_array($productData)) {									 		
+ 			  								$selected = "";
+ 			  								if($row['product_id'] == $orderItemData['product_id']) { 
+-			  									echo "<p id='available_quantity".$row['product_id']."'>".$row['quantity']."</p>";
++			  									echo "<p id='available_quantity".$row['product_id']."'>".htmlentities($row['quantity'])."</p>";
+ 											}
+ 			  								 else {
+ 			  									$selected = "";
+-- 
+2.7.4
+

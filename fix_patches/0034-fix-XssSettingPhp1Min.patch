@@ -1,0 +1,25 @@
+From 665486e46357eb1219fc1ed9906a876f2a13525b Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Wed, 29 Jan 2020 13:57:27 +0100
+Subject: [PATCH 34/36] fix XssSettingPhp1Min
+
+---
+ setting.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setting.php b/setting.php
+index 87c8bb9..04f0ab1 100644
+--- a/setting.php
++++ b/setting.php
+@@ -32,7 +32,7 @@ mysqli_close($conn);
+ 						<div class="form-group">
+ 					    <label for="username" class="col-sm-2 control-label">Username</label>
+ 					    <div class="col-sm-10">
+-					      <input type="text" class="form-control" id="username" name="username" placeholder="Usename" value="<?php echo $result['username']; ?>"/>
++					      <input type="text" class="form-control" id="username" name="username" placeholder="Usename" value="<?php echo htmlentities($result['username']); ?>"/>
+ 					    </div>
+ 					  </div>
+ 
+-- 
+2.7.4
+

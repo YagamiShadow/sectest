@@ -1,0 +1,25 @@
+From 0e8c6992a86e94a2555cb1b24f72a4775c76a308 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 17:46:34 +0100
+Subject: [PATCH 16/36] fix XssOrdersPhp42Min
+
+---
+ orders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/orders.php b/orders.php
+index c425abd..c453e43 100644
+--- a/orders.php
++++ b/orders.php
+@@ -402,7 +402,7 @@ if($_GET['o'] == 'add') {
+ 				    <label for="subTotal" class="col-sm-3 control-label">Sub Amount</label>
+ 				    <div class="col-sm-9">
+ 				      <input type="text" class="form-control" id="subTotal" name="subTotal" disabled="true" value="<?php echo htmlentities($data[4]) ?>" />
+-				      <input type="hidden" class="form-control" id="subTotalValue" name="subTotalValue" value="<?php echo $data[4] ?>" />
++				      <input type="hidden" class="form-control" id="subTotalValue" name="subTotalValue" value="<?php echo htmlentities($data[4]) ?>" />
+ 				    </div>
+ 				  </div> <!--/form-group-->			  
+ 				  			  
+-- 
+2.7.4
+

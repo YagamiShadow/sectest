@@ -1,0 +1,60 @@
+From e5977ad3a0ab59d9d5e9a0f3fb53728c018d31b8 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Wed, 29 Jan 2020 00:08:29 +0100
+Subject: [PATCH 29/36] fix XssPrintOrderPhp1Min
+
+---
+ php_action/printOrder.php | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/php_action/printOrder.php b/php_action/printOrder.php
+index 0b4f1f7..926eed3 100644
+--- a/php_action/printOrder.php
++++ b/php_action/printOrder.php
+@@ -69,7 +69,7 @@ $orderItemResult = mysqli_query($conn, $orderItemSql);
+                            <tbody>
+                               <tr>
+                                  <td style="width: 74px;vertical-align: top;color: red;" rowspan="3">TO, </td>
+-                                 <td style="border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: red">&nbsp;'.$clientName.'</td>
++                                 <td style="border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: red">&nbsp;'.htmlentities($clientName).'</td>
+                               </tr>
+                               <tr>
+                                  <td style="border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: black">&nbsp;</td>
+@@ -82,8 +82,8 @@ $orderItemResult = mysqli_query($conn, $orderItemSql);
+                         <table align="left" cellspacing="0" style="width: 100%; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-right-width: thin; border-bottom-width: thin; border-left-width: thin; border-right-color: black; border-bottom-color: black; border-left-color: black;">
+                            <tbody>
+                               <tr>
+-                                 <td style=" border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: red;color: red;">G.S.T.IN :'.$gstn.'</td>
+-                                 <td style="border-left-style: solid; border-left-width: thin; border-left-color: black; border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: red;color: red;">Mobile No: '.$clientContact.'</td>
++                                 <td style=" border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: red;color: red;">G.S.T.IN :'.htmlentities($gstn).'</td>
++                                 <td style="border-left-style: solid; border-left-width: thin; border-left-color: black; border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: red;color: red;">Mobile No: '.htmlentities($clientContact).'</td>
+                               </tr>
+                            </tbody>
+                         </table>
+@@ -133,10 +133,10 @@ $orderItemResult = mysqli_query($conn, $orderItemSql);
+                         
+                $table .= '<tr>
+                      <td style="border-left: 1px solid black;border-right: 1px solid black;height: 27px;">'.$x.'</td>
+-                     <td style="border-left: 1px solid black;height: 27px;">'.$row[4].'</td>
+-                     <td style="border-left: 1px solid black;height: 27px;">'.$row[2].'</td>
+-                     <td style="border-left: 1px solid black;height: 27px;">'.$row[1].'</td>
+-                     <td style="border-left: 1px solid black;border-right: 1px solid black;height: 27px;">'.$row[3].'</td>
++                     <td style="border-left: 1px solid black;height: 27px;">'.htmlentities($row[4]).'</td>
++                     <td style="border-left: 1px solid black;height: 27px;">'.htmlentities($row[2]).'</td>
++                     <td style="border-left: 1px solid black;height: 27px;">'.htmlentities($row[1]).'</td>
++                     <td style="border-left: 1px solid black;border-right: 1px solid black;height: 27px;">'.htmlentities($row[3]).'</td>
+                   </tr>
+                ';
+             $x++;
+@@ -147,7 +147,7 @@ $orderItemResult = mysqli_query($conn, $orderItemSql);
+                      <td style="border-left: 1px solid black;height: 27px;"></td>
+                      <td style="border-left: 1px solid black;height: 27px;"></td>
+                      <td style="width: 149px;border-right-style: solid;border-bottom-style: solid;border-right-width: thin;border-bottom-width: thin;border-right-color: black;border-bottom-color: #000;background-color: black;color: white;padding-left: 5px;-webkit-print-color-adjust: exact;">Total</td>
+-                     <td style="width: 218px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-top-width: thin; border-right-width: thin; border-bottom-width: thin; border-top-color: black; border-right-color: black; border-bottom-color: black;">'.$subTotal.'</td>
++                     <td style="width: 218px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-top-width: thin; border-right-width: thin; border-bottom-width: thin; border-top-color: black; border-right-color: black; border-bottom-color: black;">'.htmlentities($subTotal).'</td>
+                   </tr>
+                   <tr>
+                      <td colspan="3" style="border-top: 1px solid black;border-bottom: 1px solid black;border-left: 1px solid black;padding: 5px;">Neft For:- Bank Name</td>
+-- 
+2.7.4
+

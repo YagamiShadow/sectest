@@ -1,0 +1,25 @@
+From f9558cea5e0aa4684c039b8dbfcbdbabbf05a06f Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 17:43:58 +0100
+Subject: [PATCH 14/36] fix XssOrdersPhp39Min
+
+---
+ orders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/orders.php b/orders.php
+index 8a7557e..9145629 100644
+--- a/orders.php
++++ b/orders.php
+@@ -382,7 +382,7 @@ if($_GET['o'] == 'add') {
+ 			  				</td>
+ 			  				<td style="padding-left:20px;">			  					
+ 			  					<input type="text" name="total[]" id="total<?php echo $x; ?>" autocomplete="off" class="form-control" disabled="true" value="<?php echo htmlentities($orderItemData['total']); ?>"/>			  					
+-			  					<input type="hidden" name="totalValue[]" id="totalValue<?php echo $x; ?>" autocomplete="off" class="form-control" value="<?php echo $orderItemData['total']; ?>"/>			  					
++			  					<input type="hidden" name="totalValue[]" id="totalValue<?php echo $x; ?>" autocomplete="off" class="form-control" value="<?php echo htmlentities($orderItemData['total']); ?>"/>			  					
+ 			  				</td>
+ 			  				<td>
+ 
+-- 
+2.7.4
+

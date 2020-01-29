@@ -1,0 +1,25 @@
+From 2a92ca0431f6e2b0606059f5a355e6781fbd3508 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 17:41:28 +0100
+Subject: [PATCH 12/36] fix XssOrdersPhp35Min
+
+---
+ orders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/orders.php b/orders.php
+index 52ac53a..9a21b39 100644
+--- a/orders.php
++++ b/orders.php
+@@ -377,7 +377,7 @@ if($_GET['o'] == 'add') {
+ 			  				</td>
+ 			  				<td style="padding-left:20px;">
+ 			  					<div class="form-group">
+-			  					<input type="number" name="quantity[]" id="quantity<?php echo $x; ?>" onkeyup="getTotal(<?php echo $x ?>)" autocomplete="off" class="form-control" min="1" value="<?php echo $orderItemData['quantity']; ?>" />
++			  					<input type="number" name="quantity[]" id="quantity<?php echo $x; ?>" onkeyup="getTotal(<?php echo $x ?>)" autocomplete="off" class="form-control" min="1" value="<?php echo htmlentities($orderItemData['quantity']); ?>" />
+ 			  					</div>
+ 			  				</td>
+ 			  				<td style="padding-left:20px;">			  					
+-- 
+2.7.4
+

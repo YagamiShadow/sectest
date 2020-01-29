@@ -1,0 +1,25 @@
+From e1f6fe3076ba54becd239068e8136b41a95ad89f Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Wed, 29 Jan 2020 13:48:50 +0100
+Subject: [PATCH 30/36] fix XssProductPhp1Min
+
+---
+ product.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/product.php b/product.php
+index b4f42d6..0309fbe 100644
+--- a/product.php
++++ b/product.php
+@@ -106,7 +106,7 @@
+ 								$result = mysqli_query($conn, $sql);
+ 
+ 								while($row =  mysqli_fetch_array($result)) {
+-									echo "<option value='".$row[0]."'>".$row[1]."</option>";
++									echo "<option value='".$row[0]."'>".htmlentities($row[1])."</option>";
+ 								} // while
+ 								
+ 				      	?>
+-- 
+2.7.4
+

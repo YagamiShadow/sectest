@@ -1,0 +1,25 @@
+From b8810d010981a2a5bd59bc7448220e30701bafd4 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 18:07:35 +0100
+Subject: [PATCH 26/36] fix XssOrdersPhp54Min
+
+---
+ orders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/orders.php b/orders.php
+index 5249083..0cd9308 100644
+--- a/orders.php
++++ b/orders.php
+@@ -451,7 +451,7 @@ if($_GET['o'] == 'add') {
+ 				  <div class="form-group">
+ 				    <label for="due" class="col-sm-3 control-label">Due Amount</label>
+ 				    <div class="col-sm-9">
+-				      <input type="text" class="form-control" id="due" name="due" disabled="true" value="<?php echo $data[10] ?>"  />
++				      <input type="text" class="form-control" id="due" name="due" disabled="true" value="<?php echo htmlentities($data[10]) ?>"  />
+ 				      <input type="hidden" class="form-control" id="dueValue" name="dueValue" value="<?php echo $data[10] ?>"  />
+ 				    </div>
+ 				  </div> <!--/form-group-->		
+-- 
+2.7.4
+

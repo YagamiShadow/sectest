@@ -1,0 +1,25 @@
+From ca71846ed3acda488ee8512bb31447f4eb33369e Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 16:06:39 +0100
+Subject: [PATCH 01/36] fix XssDashboardPhp10Min
+
+---
+ dashboard.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/dashboard.php b/dashboard.php
+index 79bab11..5af9eb7 100644
+--- a/dashboard.php
++++ b/dashboard.php
+@@ -150,7 +150,7 @@ mysqli_close($conn);
+ 			  	<tbody>
+ 					<?php while ($orderResult = mysqli_fetch_assoc($userwiseQuery)) { ?>
+ 						<tr>
+-							<td><?php echo $orderResult['username']?></td>
++							<td><?php echo htmlentities($orderResult['username'])?></td>
+ 							<td><?php echo $orderResult['totalorder']?></td>
+ 							
+ 						</tr>
+-- 
+2.7.4
+

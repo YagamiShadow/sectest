@@ -1,0 +1,25 @@
+From cc4bd514d0422966a0f401df2669e96801cb641b Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Wed, 29 Jan 2020 13:59:13 +0100
+Subject: [PATCH 35/36] fix XssSettingPhp3Min
+
+---
+ setting.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/setting.php b/setting.php
+index 04f0ab1..5d2a7a7 100644
+--- a/setting.php
++++ b/setting.php
+@@ -54,7 +54,7 @@ mysqli_close($conn);
+ 						<div class="form-group">
+ 					    <label for="bio" class="col-sm-2 control-label">Bio</label>
+ 					    <div class="col-sm-10">
+-					      <input type="text" class="form-control" id="bio" name="bio" placeholder="Bio" value="<?php echo $result['bio']; ?>"/>
++					      <input type="text" class="form-control" id="bio" name="bio" placeholder="Bio" value="<?php echo htmlentities($result['bio']); ?>"/>
+ 					    </div>
+ 					  </div>
+ 
+-- 
+2.7.4
+

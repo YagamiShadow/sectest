@@ -1,0 +1,25 @@
+From 7439b08d54e10d73ff07119a3d53f1d74ee32862 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 17:32:55 +0100
+Subject: [PATCH 08/36] fix XssOrdersPhp27Min
+
+---
+ orders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/orders.php b/orders.php
+index b3fdffc..2d90675 100644
+--- a/orders.php
++++ b/orders.php
+@@ -342,7 +342,7 @@ if($_GET['o'] == 'add') {
+ 			  									$selected = "";
+ 			  								}
+ 
+-			  								echo "<option value='".$row['product_id']."' id='changeProduct".$row['product_id']."' ".$selected." >".$row['product_name']."</option>";
++			  								echo "<option value='".$row['product_id']."' id='changeProduct".$row['product_id']."' ".$selected." >".htmlentities($row['product_name'])."</option>";
+ 										 	} // /while 
+ 
+ 			  						?>
+-- 
+2.7.4
+

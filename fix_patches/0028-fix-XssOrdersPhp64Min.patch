@@ -1,0 +1,25 @@
+From e93e30a83a896172fa2f26eb1b706cc9c467dba6 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 23:52:14 +0100
+Subject: [PATCH 28/36] fix XssOrdersPhp64Min
+
+---
+ orders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/orders.php b/orders.php
+index 960af65..6174d59 100644
+--- a/orders.php
++++ b/orders.php
+@@ -510,7 +510,7 @@ if($_GET['o'] == 'add') {
+ 			    <div class="col-sm-offset-2 col-sm-10">
+ 			    <button type="button" class="btn btn-default" onclick="addRow()" id="addRowBtn" data-loading-text="Loading..."> <i class="glyphicon glyphicon-plus-sign"></i> Add Row </button>
+ 
+-			    <input type="hidden" name="orderId" id="orderId" value="<?php echo $_GET['i']; ?>" />
++			    <input type="hidden" name="orderId" id="orderId" value="<?php echo htmlentities($_GET['i']); ?>" />
+ 
+ 			    <button type="submit" id="editOrderBtn" data-loading-text="Loading..." class="btn btn-success"><i class="glyphicon glyphicon-ok-sign"></i> Save Changes</button>
+ 			      
+-- 
+2.7.4
+

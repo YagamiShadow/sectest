@@ -1,0 +1,25 @@
+From 396c94233b5bd786714b14e6dd86512241337397 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 16:52:57 +0100
+Subject: [PATCH 04/36] fix XssOrdersPhp6Min
+
+---
+ orders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/orders.php b/orders.php
+index 67eb14c..8732fa3 100644
+--- a/orders.php
++++ b/orders.php
+@@ -34,7 +34,7 @@ if($_GET['o'] == 'add') {
+ 	} else if($_GET['o'] == 'manord') { 
+ 		echo "Manage Orders";
+ 	} else if($_GET['o'] == 'editOrd') { 
+-		echo "Edit Order " . $_GET['i'];
++		echo "Edit Order " . htmlentities($_GET['i']);
+ 	}
+ 	?>	
+ </h4>
+-- 
+2.7.4
+

@@ -1,0 +1,25 @@
+From 02af3360704ab85e9ce825838f7b77e31089f0d6 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 17:52:09 +0100
+Subject: [PATCH 21/36] fix XssOrdersPhp47Min
+
+---
+ orders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/orders.php b/orders.php
+index 625bd43..0c0b933 100644
+--- a/orders.php
++++ b/orders.php
+@@ -423,7 +423,7 @@ if($_GET['o'] == 'add') {
+ 				    <label for="grandTotal" class="col-sm-3 control-label">Grand Total</label>
+ 				    <div class="col-sm-9">
+ 				      <input type="text" class="form-control" id="grandTotal" name="grandTotal" disabled="true" value="<?php echo htmlentities($data[8]) ?>"  />
+-				      <input type="hidden" class="form-control" id="grandTotalValue" name="grandTotalValue" value="<?php echo $data[8] ?>"  />
++				      <input type="hidden" class="form-control" id="grandTotalValue" name="grandTotalValue" value="<?php echo htmlentities($data[8]) ?>"  />
+ 				    </div>
+ 				  </div> <!--/form-group-->	
+ 				  <div class="form-group">
+-- 
+2.7.4
+

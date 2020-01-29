@@ -1,0 +1,25 @@
+From 20304e0798b96566c5e28318c1c8cb4081a231de Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 18:06:10 +0100
+Subject: [PATCH 25/36] fix XssOrdersPhp53Min
+
+---
+ orders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/orders.php b/orders.php
+index 1457360..5249083 100644
+--- a/orders.php
++++ b/orders.php
+@@ -445,7 +445,7 @@ if($_GET['o'] == 'add') {
+ 			  	<div class="form-group">
+ 				    <label for="paid" class="col-sm-3 control-label">Paid Amount</label>
+ 				    <div class="col-sm-9">
+-				      <input type="text" class="form-control" id="paid" name="paid" autocomplete="off" onkeyup="paidAmount()" value="<?php echo $data[9] ?>"  />
++				      <input type="text" class="form-control" id="paid" name="paid" autocomplete="off" onkeyup="paidAmount()" value="<?php echo htmlentities($data[9]) ?>"  />
+ 				    </div>
+ 				  </div> <!--/form-group-->			  
+ 				  <div class="form-group">
+-- 
+2.7.4
+

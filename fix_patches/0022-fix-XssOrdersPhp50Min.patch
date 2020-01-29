@@ -1,0 +1,25 @@
+From 2435a2eb75fbd595be42bbcdf19100516e4f559b Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 17:53:52 +0100
+Subject: [PATCH 22/36] fix XssOrdersPhp50Min
+
+---
+ orders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/orders.php b/orders.php
+index 0c0b933..a4b805f 100644
+--- a/orders.php
++++ b/orders.php
+@@ -429,7 +429,7 @@ if($_GET['o'] == 'add') {
+ 				  <div class="form-group">
+ 				    <label for="vat" class="col-sm-3 control-label gst"><?php if($data[13] == 2) {echo "IGST 18%";} else echo "GST 18%"; ?></label>
+ 				    <div class="col-sm-9">
+-				      <input type="text" class="form-control" id="vat" name="vat" disabled="true" value="<?php echo $data[5] ?>"  />
++				      <input type="text" class="form-control" id="vat" name="vat" disabled="true" value="<?php echo htmlentities($data[5]) ?>"  />
+ 				      <input type="hidden" class="form-control" id="vatValue" name="vatValue" value="<?php echo $data[5] ?>"  />
+ 				    </div>
+ 				  </div> 
+-- 
+2.7.4
+

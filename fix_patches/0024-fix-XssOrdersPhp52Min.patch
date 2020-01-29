@@ -1,0 +1,25 @@
+From ae51ab59744a0099ec468c10d5a4ab387e03a1c3 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Tue, 28 Jan 2020 18:04:54 +0100
+Subject: [PATCH 24/36] fix XssOrdersPhp52Min
+
+---
+ orders.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/orders.php b/orders.php
+index 4e042ec..1457360 100644
+--- a/orders.php
++++ b/orders.php
+@@ -436,7 +436,7 @@ if($_GET['o'] == 'add') {
+ 				  <div class="form-group">
+ 				    <label for="gstn" class="col-sm-3 control-label gst">G.S.T.IN</label>
+ 				    <div class="col-sm-9">
+-				      <input type="text" class="form-control" id="gstn" name="gstn" value="<?php echo $data[14] ?>"  />
++				      <input type="text" class="form-control" id="gstn" name="gstn" value="<?php echo htmlentities($data[14]) ?>"  />
+ 				    </div>
+ 				  </div><!--/form-group-->		  		  
+ 			  </div> <!--/col-md-6-->
+-- 
+2.7.4
+
