@@ -1,9 +1,9 @@
 package it.unitn.sectest;
 
-import org.junit.platform.launcher.Launcher;
-import org.junit.platform.launcher.LauncherDiscoveryRequest;
+import org.junit.platform.launcher.*;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
+import org.junit.platform.launcher.listeners.LoggingListener;
 import org.junit.platform.launcher.listeners.SummaryGeneratingListener;
 import org.junit.platform.launcher.listeners.TestExecutionSummary;
 import utils.BaseTest;
@@ -31,11 +31,14 @@ public class RunAllTests {
                 .filters(includeClassNamePatterns(".+[.$]Xss.*"))
                 .build();
         Launcher launcher = LauncherFactory.create();
-        launcher.registerTestExecutionListeners(listener);
+
+        launcher.registerTestExecutionListeners(listener,LoggingListener.forJavaUtilLogging());
         launcher.execute(request);
         BaseTest.quitHelper();
         return listener;
     }
+
+
 
 
 }
