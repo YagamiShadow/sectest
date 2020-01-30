@@ -15,7 +15,7 @@ web_original:
     environment: 
         IMS_DB_HOST: mysql_db
 web_patched:
-    build: .\patched
+    build: ./patched
     restart: always
     links:
       - mysql_db
