@@ -18,4 +18,5 @@ if [ $? -ne 0 ] ; then
 	service docker restart || { echo >&2 "[ERROR  ] Failed to restart docker service"; exit 1; }
 	docker-compose -f $DIR/docker-compose.yml build $@ || { echo >&2 "[ERROR  ] Failed to build docker services"; exit 1; } 
 fi
+docker-compose -f $DIR/docker-compose.yml rm -f mysql_db
 docker-compose -f $DIR/docker-compose.yml up $@

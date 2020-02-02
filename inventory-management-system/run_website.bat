@@ -4,6 +4,7 @@ IF %ERRORLEVEL% NEQ 0 GOTO NO_DOCKER
 IF "%1"=="" GOTO NO_ARG
 echo [INFO ] Starting services %*...
 docker-compose -f %~dp0docker-compose.yml build %*
+docker-compose -f %~dp0docker-compose.yml rm -f mysql_db 
 docker-compose -f %~dp0docker-compose.yml up %*
 GOTO EOF
 :NO_ARG
