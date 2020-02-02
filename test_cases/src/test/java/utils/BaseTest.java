@@ -84,4 +84,20 @@ public abstract class BaseTest {
         assert payload.isTheElement(payloadElement);
     }
 
+    private static final String formFormat = "<form method=\"POST\" id=\"form_id\" action=\"%s\">%s</form>";
+
+    protected void postGet(String url, String... post_params){
+        if (post_params.length % 2 != 0){
+            throw new IllegalArgumentException("Invalid number of params");
+        }
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i<post_params.length; i+=2){
+            builder.append("<input type=\"hidden\" name=\"").append(post_params[i]).append("\" value=\"").append(post_params[i+1].replace("\"", "\\\"")).append("\" />");
+        }
+        helper.getHtmlContent(String.format(formFormat, helper.getFullUrl(url), builder.toString()));
+        helper.findElement(By.id("form_id")).submit();
+        sleep(100);
+        helper.waitDocumentReady();
+    }
+
 }

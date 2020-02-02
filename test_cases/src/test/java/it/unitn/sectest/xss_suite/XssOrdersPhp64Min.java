@@ -1,10 +1,7 @@
 package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import utils.BaseTest;
-import utils.GenericUtils;
 import utils.ProcedureHelper;
 import utils.XssPayload;
 
@@ -12,7 +9,7 @@ public class XssOrdersPhp64Min extends BaseTest {
 
     /*
     Attack description:
-    - go to the order edit url with get parameter "i" set to quotes attribute escape xss payload
+    - go to the order edit url with get parameter "i" set to quotes attribute escape xss payload (eg: " /><h1>Ciao</h1><input x=")
      */
     @Test
     public void test() {

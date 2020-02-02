@@ -1,8 +1,6 @@
 package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import utils.BaseTest;
 import utils.GenericUtils;
 import utils.ProcedureHelper;
@@ -13,7 +11,7 @@ public class XssOrdersPhp45Min extends BaseTest {
 
     /*
     Attack description:
-    - create order with quotes attribute escape xss payload as "discount"
+    - create order with quotes attribute escape xss payload as "discount" (eg: " /><h1>Ciao</h1><input x=")
     - go to the order edit url for that specific order
      */
     @Test

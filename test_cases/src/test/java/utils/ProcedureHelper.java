@@ -6,6 +6,8 @@ import org.json.JSONObject;
 import org.openqa.selenium.By;
 
 import javax.security.auth.login.FailedLoginException;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.util.*;
@@ -183,7 +185,7 @@ public class ProcedureHelper extends RelativeWebDriver {
                 return getAllCookies();
             }
         }).followRedirects(false).followSslRedirects(false)
-                //.proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8888)))
+                .proxy(new Proxy(Proxy.Type.HTTP, new InetSocketAddress("127.0.0.1", 8888)))
                 .build();
     }
 
@@ -238,20 +240,28 @@ public class ProcedureHelper extends RelativeWebDriver {
         }
     }
 
-    public void createUser(String username, String password, String email) {
+    public int createUser(String username, String password, String email) {
         Response response = httpPost("php_action/createUser.php", "userName", username, "upassword", password, "uemail", email);
         throwIfFalse(response.isSuccessful(), "response not successful");
         assertJsonTrue(bodyString(response), "success");
+        JSONArray array = getUsers();
+        JSONArray entry = array.getJSONArray(array.length()-1);
+        String html = entry.getString(1);
+        Pattern p = Pattern.compile("removeUser\\((\\d+)\\)");
+        Matcher m = p.matcher(html);
+        if (!m.find()) {
+            throw new RuntimeException("Failed to match userId in html");
+        } else {
+            return Integer.parseInt(m.group(1));
+        }
     }
 
-    public void createDummyUser(String username) {
-        this.createUser(username, DEFAULT_PASSWORD, GenericUtils.genRandomString(12) + "@gmail.com");
+    public int createDummyUser(String username) {
+        return this.createUser(username, DEFAULT_PASSWORD, GenericUtils.genRandomString(12) + "@gmail.com");
     }
 
     public int getUserId(String username) {
-        Response response = httpGet("php_action/fetchUser.php");
-        JSONObject jsonObject = new JSONObject(bodyString(response));
-        JSONArray array = jsonObject.getJSONArray("data");
+        JSONArray array = getUsers();
         for (int i = 0; i < array.length(); ++i) {
             JSONArray entry = array.getJSONArray(i);
             String u = entry.getString(0);
@@ -267,6 +277,12 @@ public class ProcedureHelper extends RelativeWebDriver {
             }
         }
         throw new RuntimeException("Failed to find the username: " + username);
+    }
+
+    private JSONArray getUsers(){
+        Response response = httpGet("php_action/fetchUser.php");
+        JSONObject jsonObject = new JSONObject(bodyString(response));
+        return jsonObject.getJSONArray("data");
     }
 
     public void deleteUser(String username) {

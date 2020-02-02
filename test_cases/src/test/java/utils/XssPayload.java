@@ -48,6 +48,12 @@ public class XssPayload {
         return new XssPayload(payload, identifier);
     }
 
+    public static XssPayload genJsonApiPayload(){
+        String identifier = generateIdentifier();
+        String payload = "<script src='http://www.malicious.com/script.js' id='"+identifier+"'>";
+        return new XssPayload(payload, identifier);
+    }
+
     private static String generateIdentifier() {
         return "xsspayload_" + GenericUtils.genRandomString(16);
     }

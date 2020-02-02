@@ -12,7 +12,7 @@ public class XssProductPhp3Min extends BaseTest {
 
     /*
     Attack description:
-    - create brand with option/select escape xss payload as "name"
+    - create brand with option/select escape xss payload as "name" (eg: </option></select><h1>Ciao</h1><select><option>)
     - go to the product page url
      */
     @Test

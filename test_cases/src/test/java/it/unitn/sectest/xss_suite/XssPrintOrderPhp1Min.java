@@ -1,18 +1,17 @@
 package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
-import utils.*;
+import utils.BaseTest;
+import utils.GenericUtils;
+import utils.XssPayload;
 
 public class XssPrintOrderPhp1Min extends BaseTest {
     private Integer orderId, productId;
-    private boolean switched = false;
 
     /*
     Attack description:
-    - create order with plain xss payload as "subTotal"
-    - go to manage orders url
-    - print report of that specific order
-    - payload will be in the report window html
+    - create order with plain xss payload as "subTotal" (eg: <h1>Ciao</h1>)
+    - POST request to "php_action/printOrder.php" page with orderId set to the id of the created order
      */
     @Test
     public void testA() {
@@ -24,10 +23,8 @@ public class XssPrintOrderPhp1Min extends BaseTest {
 
     /*
     Attack description:
-    - create order with plain xss payload as "clientName"
-    - go to manage orders url
-    - print report of that specific order
-    - payload will be in the report window html
+    - create order with plain xss payload as "clientName" (eg: <h1>Ciao</h1>)
+    - POST request to "php_action/printOrder.php" page with orderId set to the id of the created order
      */
     @Test
     public void testB() {
@@ -39,10 +36,8 @@ public class XssPrintOrderPhp1Min extends BaseTest {
 
     /*
     Attack description:
-    - create order with plain xss payload as "gstn"
-    - go to manage orders url
-    - print report of that specific order
-    - payload will be in the report window html
+    - create order with plain xss payload as "gstn" (eg: <h1>Ciao</h1>)
+    - POST request to "php_action/printOrder.php" page with orderId set to the id of the created order
      */
     @Test
     public void testC() {
@@ -54,10 +49,8 @@ public class XssPrintOrderPhp1Min extends BaseTest {
 
     /*
     Attack description:
-    - create order with plain xss payload as "clientContact"
-    - go to manage orders url
-    - print report of that specific order
-    - payload will be in the report window html
+    - create order with plain xss payload as "clientContact" (eg: <h1>Ciao</h1>)
+    - POST request to "php_action/printOrder.php" page with orderId set to the id of the created order
      */
     @Test
     public void testD() {
@@ -70,10 +63,8 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     /*
     Attack description:
     - create product
-    - create order with that specific product and "rate" set to plain xss payload
-    - go to manage orders url
-    - print report of that specific order
-    - payload will be in the report window html
+    - create order with that specific product and "rate" set to plain xss payload (eg: <h1>Ciao</h1>)
+    - POST request to "php_action/printOrder.php" page with orderId set to the id of the created order
      */
     @Test
     public void testF() {
@@ -87,10 +78,8 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     /*
     Attack description:
     - create product
-    - create order with that specific product and "quantity" set to plain xss payload
-    - go to manage orders url
-    - print report of that specific order
-    - payload will be in the report window html
+    - create order with that specific product and "quantity" set to plain xss payload (eg: <h1>Ciao</h1>)
+    - POST request to "php_action/printOrder.php" page with orderId set to the id of the created order
      */
     @Test
     public void testG() {
@@ -104,10 +93,8 @@ public class XssPrintOrderPhp1Min extends BaseTest {
     /*
     Attack description:
     - create product
-    - create order with that specific product and "totalValue" set to plain xss payload
-    - go to manage orders url
-    - print report of that specific order
-    - payload will be in the report window html
+    - create order with that specific product and "totalValue" set to plain xss payload (eg: <h1>Ciao</h1>)
+    - POST request to "php_action/printOrder.php" page with orderId set to the id of the created order
      */
     @Test
     public void testH() {
@@ -120,11 +107,9 @@ public class XssPrintOrderPhp1Min extends BaseTest {
 
     /*
     Attack description:
-    - create product with plain xss payload as name
+    - create product with plain xss payload as name (eg: <h1>Ciao</h1>)
     - create order with that specific product
-    - go to manage orders url
-    - print report of that specific order
-    - payload will be in the report window html
+    - POST request to "php_action/printOrder.php" page with orderId set to the id of the created order
      */
     @Test
     public void testI() {
@@ -137,25 +122,8 @@ public class XssPrintOrderPhp1Min extends BaseTest {
 
 
     private void testPrintOrder(int orderId, XssPayload payload) {
-        helper.requireLoginAdmin();
-        helper.get(ProcedureHelper.ORDERS_MAN_URL);
-        helper.stashHandles();
-        sleep(200);
-        try {
-            helper.executeScript("printOrder(" + orderId + ");");
-        } catch (RelativeWebDriver.JavascriptNotSupported javascriptNotSupported) {
-            throw new RuntimeException(javascriptNotSupported);
-        }
-        sleep(300);
-        assert helper.hasNewWindows();
-        helper.switchToLatestHandle();
-        switched = true;
-        try {
-            assert payload.isInDocument(helper);
-        } finally {
-            helper.closeBackToLatestWindow();
-            switched = false;
-        }
+        postGet("php_action/printOrder.php", "orderId", String.valueOf(orderId));
+        assert payload.isInDocument(helper);
     }
 
     @Override
@@ -184,10 +152,6 @@ public class XssPrintOrderPhp1Min extends BaseTest {
         if (orderId != null) {
             helper.deleteOrder(orderId);
             orderId = null;
-        }
-        if (switched) {
-            helper.switchToLatestHandle();
-            switched = false;
         }
         if (productId != null) {
             helper.removeProduct(productId);

@@ -11,15 +11,14 @@ public class XssDashboardPhp10Min extends BaseTest {
 
     /*
     Attack description:
-    - create user with plain xss payload as username
+    - create user with plain xss payload as username (eg: <h1>Ciao</h1>)
     - login as admin and go to dashboard page
      */
     @Test
     public void test() {
         helper.requireLoginAdmin();
         XssPayload payload = XssPayload.genPlainPayload();
-        helper.createDummyUser(payload.toString());
-        userId = helper.getUserId(payload.toString());
+        userId = helper.createDummyUser(payload.toString());
         helper.requireLogin(payload.toString());
         orderId = helper.createDummyOrder();
         helper.requireLoginAdmin();

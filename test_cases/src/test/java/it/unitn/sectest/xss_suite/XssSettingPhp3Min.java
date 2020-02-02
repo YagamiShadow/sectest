@@ -1,8 +1,6 @@
 package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import utils.BaseTest;
 import utils.GenericUtils;
 import utils.ProcedureHelper;
@@ -15,7 +13,7 @@ public class XssSettingPhp3Min extends BaseTest {
     Attack description:
     - create random user
     - login with that username
-    - change the bio to a quotes attribute escape xss payload
+    - change the bio to a quotes attribute escape xss payload (eg: " /><h1>Ciao</h1><input x=")
     - go to the setting page url
      */
     @Test
@@ -23,9 +21,8 @@ public class XssSettingPhp3Min extends BaseTest {
         helper.requireLoginAdmin();
         XssPayload payload = XssPayload.genDoubleQuoteAttributePayload("input", true);
         String username = "user_" + GenericUtils.genRandomString(8);
-        helper.createDummyUser(username);
+        userId = helper.createDummyUser(username);
         helper.requireLogin(username);
-        userId = helper.getUserId(username);
         helper.changeBio(userId, payload.toString());
         helper.get(ProcedureHelper.SETTING_URL);
         assertPayloadNextTo(payload, "bio");

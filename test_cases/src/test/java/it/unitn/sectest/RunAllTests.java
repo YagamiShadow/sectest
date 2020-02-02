@@ -1,6 +1,7 @@
 package it.unitn.sectest;
 
-import org.junit.platform.launcher.*;
+import org.junit.platform.launcher.Launcher;
+import org.junit.platform.launcher.LauncherDiscoveryRequest;
 import org.junit.platform.launcher.core.LauncherDiscoveryRequestBuilder;
 import org.junit.platform.launcher.core.LauncherFactory;
 import org.junit.platform.launcher.listeners.LoggingListener;
@@ -16,7 +17,7 @@ import static org.junit.platform.engine.discovery.DiscoverySelectors.selectPacka
 public class RunAllTests {
 
     public static void main(String[] args) {
-        if (args.length > 0){
+        if (args.length > 0) {
             BaseTest.USE_HOST = args[0];
         }
         TestExecutionSummary summary = runAll().getSummary();
@@ -32,13 +33,11 @@ public class RunAllTests {
                 .build();
         Launcher launcher = LauncherFactory.create();
 
-        launcher.registerTestExecutionListeners(listener,LoggingListener.forJavaUtilLogging());
+        launcher.registerTestExecutionListeners(listener, LoggingListener.forJavaUtilLogging());
         launcher.execute(request);
         BaseTest.quitHelper();
         return listener;
     }
-
-
 
 
 }

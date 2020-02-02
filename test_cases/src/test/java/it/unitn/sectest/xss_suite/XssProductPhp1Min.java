@@ -2,15 +2,17 @@ package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import utils.*;
+import utils.BaseTest;
+import utils.GenericUtils;
+import utils.ProcedureHelper;
+import utils.XssPayload;
 
 public class XssProductPhp1Min extends BaseTest {
     private Integer brandId;
 
     /*
     Attack description:
-    - create brand with option/select escape xss payload as "name"
+    - create brand with option/select escape xss payload as "name" (eg: </option></select><h1>Ciao</h1><select><option>)
     - go to the product page url
      */
     @Test

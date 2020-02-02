@@ -11,7 +11,7 @@ public class XssOrdersPhp11Min extends BaseTest {
 
     /*
     Attack description:
-    - create product with option/select escape xss payload as name
+    - create product with option/select escape xss payload as name (eg: </option></select><h1>Ciao</h1><select><option>)
     - go to the orders add url
      */
     @Test

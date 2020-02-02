@@ -1,19 +1,16 @@
 package it.unitn.sectest.xss_suite;
 
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import utils.BaseTest;
-import utils.GenericUtils;
 import utils.ProcedureHelper;
 import utils.XssPayload;
 
 public class XssSettingPhp1Min extends BaseTest {
-    private String username;
+    private Integer userId;
 
     /*
     Attack description:
-    - create user with quotes attribute escape xss payload as name
+    - create user with quotes attribute escape xss payload as name (eg: " /><h1>Ciao</h1><input x=")
     - login with that username
     - go to the setting page url
      */
@@ -21,19 +18,18 @@ public class XssSettingPhp1Min extends BaseTest {
     public void test() {
         helper.requireLoginAdmin();
         XssPayload payload = XssPayload.genDoubleQuoteAttributePayload("input", true);
-        helper.createDummyUser(payload.toString());
-        username = payload.toString();
+        userId = helper.createDummyUser(payload.toString());
         helper.logout();
-        helper.requireLogin(username);
+        helper.requireLogin(payload.toString());
         helper.get(ProcedureHelper.SETTING_URL);
         assertPayloadNextTo(payload, "username");
     }
 
     @Override
     public void clean() {
-        if (username != null) {
+        if (userId != null) {
             helper.requireLoginAdmin();
-            helper.deleteUser(username);
+            helper.deleteUser(userId);
         }
     }
 }

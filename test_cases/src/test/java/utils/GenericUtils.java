@@ -122,4 +122,8 @@ public class GenericUtils {
             throw new RuntimeException(e);
         }
     }
+
+    public static String sqlEscape(String data){
+        return data.replace("'", "\\'");
+    }
 }

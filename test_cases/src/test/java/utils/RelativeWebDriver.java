@@ -68,14 +68,14 @@ public class RelativeWebDriver implements WebDriver {
         return driver;
     }
 
-    protected String getFullUrl(String relativePath) {
+    public String getFullUrl(String relativePath) {
         if (relativePath == null) {
             return null;
         }
         return hostURL + (relativePath.startsWith("/") ? "" : "/") + relativePath;
     }
 
-    protected String getRelativeUrl(String fullUrl) {
+    public String getRelativeUrl(String fullUrl) {
         if (fullUrl == null) {
             return null;
         }
@@ -147,6 +147,15 @@ public class RelativeWebDriver implements WebDriver {
         if (waitDocumentReady) {
             this.waitDocumentReady();
         }
+    }
+
+    public void getHtmlPage(String html_content){
+        requireWebDriver().get("data:text/html;charset=utf-8," + html_content);
+        waitDocumentReady();
+    }
+
+    public void getHtmlContent(String html_content){
+        getHtmlPage("<html><head><title>Custom page</title></head><body>"+html_content+"</body>");
     }
 
     public void waitDocumentReady() {

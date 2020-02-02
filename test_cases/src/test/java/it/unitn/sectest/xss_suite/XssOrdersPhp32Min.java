@@ -12,7 +12,8 @@ public class XssOrdersPhp32Min extends BaseTest {
     /*
     Attack description:
     - create product
-    - create order with that specific product and "quantity" set to "1" concat to a quotes attribute escape xss payload
+    - create order with that specific product and
+    - edit the order and set the product "quantity" to "1" concat to a quotes attribute escape xss payload (eg: 1" /><h1>Ciao</h1><input x=")
     - go to the order edit url for that specific order
      */
     @Test
@@ -23,7 +24,7 @@ public class XssOrdersPhp32Min extends BaseTest {
         orderId = helper.createDummyOrderProducts(productId);
         helper.editProduct(productId, "dummy", 0, 0, "1" + payload.toString(), "100", 1);
         helper.get(ProcedureHelper.ORDERS_EDIT_URL(orderId));
-        assert payload.isInElement(helper.findElement(By.id("available_quantity"+productId)));
+        assert payload.isInElement(helper.findElement(By.id("available_quantity" + productId)));
     }
 
     @Override
