@@ -1,30 +1,59 @@
 Positive,Variant name,Database dependency,Description
 True,XssDashboardPhp10MinA,users.username,See test XssDashboardPhp10Min.java
+False,XssFetchBrandPhp1MinA,brands.brand_id,Column datatype cannot contain XSS payload
+True,XssFetchBrandPhp1MinB,brands.brand_name,See test XssFetchBrandPhp1Min.java
+False,XssFetchCategoriesPhp1MinA,categories.categories_id,Column datatype cannot contain XSS payload
+True,XssFetchCategoriesPhp1MinB,categories.categories_name,See test XssFetchCategoriesPhp1Min.java
+False,XssFetchOrderDataPhp1MinA,orders.order_id,Column datatype cannot contain XSS payload
+False,XssFetchOrderDataPhp1MinB,orders.order_date,Column datatype cannot contain XSS payload
+True,XssFetchOrderDataPhp1MinC,orders.client_name,See test XssFetchOrderDataPhp1Min.java
+True,XssFetchOrderDataPhp1MinD,orders.client_contact,See test XssFetchOrderDataPhp1Min.java
+True,XssFetchOrderDataPhp1MinE,orders.sub_total,See test XssFetchOrderDataPhp1Min.java
+True,XssFetchOrderDataPhp1MinF,orders.vat,See test XssFetchOrderDataPhp1Min.java
+True,XssFetchOrderDataPhp1MinG,orders.total_amount,See test XssFetchOrderDataPhp1Min.java
+True,XssFetchOrderDataPhp1MinH,orders.discount,See test XssFetchOrderDataPhp1Min.java
+True,XssFetchOrderDataPhp1MinI,orders.grand_total,See test XssFetchOrderDataPhp1Min.java
+True,XssFetchOrderDataPhp1MinJ,orders.paid,See test XssFetchOrderDataPhp1Min.java
+True,XssFetchOrderDataPhp1MinK,orders.due,See test XssFetchOrderDataPhp1Min.java
+False,XssFetchOrderDataPhp1MinL,orders.payment_type,Column datatype cannot contain XSS payload
+False,XssFetchOrderDataPhp1MinM,orders.payment_status,Column datatype cannot contain XSS payload
+False,XssFetchOrderPhp1MinA,orders.order_id,Column datatype cannot contain XSS payload
+False,XssFetchOrderPhp1MinB,orders.order_date,Column datatype cannot contain XSS payload
+True,XssFetchOrderPhp1MinC,orders.client_name,See test XssFetchOrderPhp1Min.java
+True,XssFetchOrderPhp1MinD,orders.client_contact,See test XssFetchOrderPhp1Min.java
 False,XssFetchProductDataPhp1MinA,product.product_id,Column datatype cannot contain XSS payload
 True,XssFetchProductDataPhp1MinB,product.product_name,See test XssFetchProductDataPhp1Min.java
 False,XssFetchProductImageUrlPhp1MinA,product.product_image,The data inserted in the database is always sanitized
+False,XssFetchProductPhp1MinA,product.product_id,Column datatype cannot contain XSS payload
+True,XssFetchProductPhp1MinB,product.product_name,See test XssFetchProductPhp1Min.java
+True,XssFetchProductPhp1MinC,product.quantity,See test XssFetchProductPhp1Min.java
+True,XssFetchProductPhp1MinD,product.rate,See test XssFetchProductPhp1Min.java
+True,XssFetchProductPhp1MinE,brands.brand_name,See test XssFetchProductPhp1Min.java
+True,XssFetchProductPhp1MinF,categories.categories_name,See test XssFetchProductPhp1Min.java
 False,XssFetchSelectedBrandPhp1MinA,brands.brand_id,Column datatype cannot contain XSS payload
-False,XssFetchSelectedBrandPhp1MinB,brands.brand_name,Not exploitable: sanitized client-side using jQuery.val()
+True,XssFetchSelectedBrandPhp1MinB,brands.brand_name,See test XssFetchSelectedBrandPhp1Min.java
 False,XssFetchSelectedBrandPhp1MinC,brands.brand_active,Column datatype cannot contain XSS payload
 False,XssFetchSelectedBrandPhp1MinD,brands.brand_status,Column datatype cannot contain XSS payload
 False,XssFetchSelectedCategoriesPhp1MinA,categories.categories_id,Column datatype cannot contain XSS payload
-False,XssFetchSelectedCategoriesPhp1MinB,categories.categories_name,Not exploitable: sanitized client-side using jQuery.val()
+True,XssFetchSelectedCategoriesPhp1MinB,categories.categories_name,See test XssFetchSelectedCategoriesPhp1Min.java
 False,XssFetchSelectedCategoriesPhp1MinC,categories.categories_active,Column datatype cannot contain XSS payload
 False,XssFetchSelectedCategoriesPhp1MinD,categories.categories_status,Column datatype cannot contain XSS payload
 False,XssFetchSelectedProductPhp1MinA,product.product_id,Column datatype cannot contain XSS payload
-False,XssFetchSelectedProductPhp1MinB,product.product_name,Not exploitable: sanitized client-side using jQuery.val()
+True,XssFetchSelectedProductPhp1MinB,product.product_name,See test XssFetchSelectedProductPhp1Min.java
 False,XssFetchSelectedProductPhp1MinC,product.product_image,The data inserted in the database is always sanitized
 False,XssFetchSelectedProductPhp1MinD,product.brand_id,Column datatype cannot contain XSS payload
 False,XssFetchSelectedProductPhp1MinE,product.categories_id,Column datatype cannot contain XSS payload
-False,XssFetchSelectedProductPhp1MinF,product.quantity,Not exploitable: sanitized client-side using jQuery.val()
-False,XssFetchSelectedProductPhp1MinG,product.rate,Not exploitable: sanitized client-side using jQuery.val()
+True,XssFetchSelectedProductPhp1MinF,product.quantity,See test XssFetchSelectedProductPhp1Min.java
+True,XssFetchSelectedProductPhp1MinG,product.rate,See test XssFetchSelectedProductPhp1Min.java
 False,XssFetchSelectedProductPhp1MinH,product.active,Column datatype cannot contain XSS payload
 False,XssFetchSelectedProductPhp1MinI,product.status,Column datatype cannot contain XSS payload
 False,XssFetchSelectedUserPhp1MinA,users.user_id,Column datatype cannot contain XSS payload
-False,XssFetchSelectedUserPhp1MinB,users.username,Not exploitable: sanitized client-side using jQuery.val()
+True,XssFetchSelectedUserPhp1MinB,users.username,See test XssFetchSelectedUserPhp1Min.java
 False,XssFetchSelectedUserPhp1MinC,users.password,The data inserted in the database is always sanitized
-False,XssFetchSelectedUserPhp1MinD,users.email,Not exploitable: the data is never inserted as HTML
-False,XssFetchSelectedUserPhp1MinE,users.bio,Not exploitable: sanitized client-side using jQuery.val()
+True,XssFetchSelectedUserPhp1MinD,users.email,See test XssFetchSelectedUserPhp1Min.java
+True,XssFetchSelectedUserPhp1MinE,users.bio,See test XssFetchSelectedUserPhp1Min.java
+True,XssFetchUserPhp1MinA,users.username,See test XssFetchUserPhp1Min.java
+False,XssFetchUserPhp1MinB,users.user_id,Column datatype cannot contain XSS payload
 True,XssGetOrderReportPhp1MinA,orders.grand_total,See test XssGetOrderReportPhp1Min.java
 False,XssGetOrderReportPhp1MinB,orders.order_date,Column datatype cannot contain XSS payload
 True,XssGetOrderReportPhp1MinC,orders.client_name,See test XssGetOrderReportPhp1Min.java
@@ -78,3 +107,6 @@ False,XssSettingPhp2MinA,users.user_id,Column datatype cannot contain XSS payloa
 True,XssSettingPhp3MinA,users.bio,See test XssSettingPhp3Min.java
 False,XssSettingPhp4MinA,users.user_id,Column datatype cannot contain XSS payload
 False,XssSettingPhp5MinA,users.user_id,Column datatype cannot contain XSS payload
+True,XssOrdersPhp64Min,,See test XssOrdersPhp64Min.java
+True,XssOrdersPhp6Min,,See test XssOrdersPhp6Min.java
+True,XssIndexPhp2Min,,See test XssIndexPhp2Min.java

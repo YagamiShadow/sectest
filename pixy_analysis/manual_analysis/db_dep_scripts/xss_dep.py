@@ -1,5 +1,4 @@
 import csv
-from pprint import pprint
 
 string_types = ["CHAR", "VARCHAR", "BINARY", "VARBINARY", "BLOB", "TEXT", "ENUM", "SET"]
 
@@ -49,12 +48,16 @@ def is_vuln_entry_vulnerability(entry, db_entries):
         vulnerable.append((entry[0], p[0], p[1]))
     return vulnerable
 
+
 chars = "abcdefghijklmnopqrstuvwxyz"
 db_deps = read_db_dep("xss_db_dep.csv")
 vn_deps = read_vuln_dep("xss_vuln_dep.csv")
 result = {r: is_vuln_entry_vulnerability(vn_deps[r], db_deps) for r in vn_deps}
 tp = []
 fp = []
+tpd = {}
+fpd = {}
+print("ALL VULNERABILITIES VARIANTS:")
 for r in result:
     entry = result[r]
     i = 0
@@ -68,20 +71,22 @@ for r in result:
             v = "FP"
             c = "The data inserted in the database is always sanitized"
         else:
-            c = "See test "+a+".java"
+            c = "See test " + a + ".java"
 
-        r = str(v == "TP")+","+a+str(chars[i]).upper()+","+b+","+c
+        r = str(v == "TP") + "," + a + str(chars[i]).upper() + "," + b + "," + c
         print(r)
         if v == "TP":
             tp.append(r)
+            tpd[a] = r
         else:
             fp.append(r)
-        i +=1
+            fpd[a] = r
+        i += 1
 print()
-print("TRUE POSITIVE VULNERABILITIES: %d" % len(tp))
+print("TRUE POSITIVE VULNERABILITIES: %d (%d files)" % (len(tp), len(tpd)))
 for t in tp:
     print(t)
 print()
-print("FALSE POSITIVE VULNERABILITIES: %d" % len(fp))
+print("FALSE POSITIVE VULNERABILITIES: %d (%d files)" % (len(fp), len(fpd)))
 for t in fp:
     print(t)

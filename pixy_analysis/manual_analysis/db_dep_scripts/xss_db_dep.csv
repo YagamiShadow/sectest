@@ -4,6 +4,7 @@ users.user_id,INT,
 users.password,VARCHAR,
 users.email,VARCHAR,createUser.php
 users.bio,TEXT,changeBio.php|editUser.php
+orders.order_id,INT,
 orders.grand_total,VARCHAR,createOrder.php
 orders.order_date,DATE,
 orders.client_name,VARCHAR,createOrder.php|editOrder.php
@@ -15,6 +16,8 @@ orders.vat,VARCHAR,createOrder.php|editOrder.php
 orders.gstn,VARCHAR,createOrder.php|editOrder.php
 orders.paid,VARCHAR,createOrder.php|editOrder.php
 orders.due,VARCHAR,createOrder.php|editOrder.php
+orders.payment_type,INT,
+orders.payment_status,INT,
 product.product_name,VARCHAR,createProduct.php|editProduct.php
 product.product_id,INT,
 product.product_image,VARCHAR,
