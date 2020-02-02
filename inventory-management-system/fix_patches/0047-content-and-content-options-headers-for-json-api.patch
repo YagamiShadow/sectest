@@ -1,0 +1,463 @@
+From c8af30b455ca2a4843dfea400aad7d316d3500af Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Sun, 2 Feb 2020 17:28:36 +0100
+Subject: [PATCH 47/47] content and content options headers for json api
+
+---
+ php_action/changeBio.php               | 5 +++--
+ php_action/changePassword.php          | 5 +++--
+ php_action/changeUsername.php          | 5 +++--
+ php_action/createBrand.php             | 5 +++--
+ php_action/createCategories.php        | 5 +++--
+ php_action/createOrder.php             | 2 ++
+ php_action/createProduct.php           | 5 +++--
+ php_action/createUser.php              | 5 +++--
+ php_action/editBrand.php               | 5 +++--
+ php_action/editCategories.php          | 5 +++--
+ php_action/editOrder.php               | 5 +++--
+ php_action/editPayment.php             | 5 +++--
+ php_action/editProduct.php             | 5 +++--
+ php_action/editProductImage.php        | 5 +++--
+ php_action/editUser.php                | 5 +++--
+ php_action/fetchBrand.php              | 5 +++--
+ php_action/fetchCategories.php         | 5 +++--
+ php_action/fetchOrder.php              | 5 +++--
+ php_action/fetchOrderData.php          | 5 +++--
+ php_action/fetchProduct.php            | 5 +++--
+ php_action/fetchProductData.php        | 5 +++--
+ php_action/fetchProductImageUrl.php    | 5 +++--
+ php_action/fetchSelectedBrand.php      | 5 +++--
+ php_action/fetchSelectedCategories.php | 5 +++--
+ php_action/fetchSelectedProduct.php    | 5 +++--
+ php_action/fetchSelectedUser.php       | 5 +++--
+ php_action/fetchUser.php               | 5 +++--
+ php_action/removeBrand.php             | 5 +++--
+ php_action/removeCategories.php        | 5 +++--
+ php_action/removeOrder.php             | 5 +++--
+ php_action/removeProduct.php           | 5 +++--
+ php_action/removeUser.php              | 5 +++--
+ 32 files changed, 95 insertions(+), 62 deletions(-)
+
+diff --git a/php_action/changeBio.php b/php_action/changeBio.php
+index bf0bb33..6e23d5e 100644
+--- a/php_action/changeBio.php
++++ b/php_action/changeBio.php
+@@ -1,5 +1,6 @@
+-<?php 
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ if($_POST) {
+diff --git a/php_action/changePassword.php b/php_action/changePassword.php
+index 3b0f148..ed5bc44 100644
+--- a/php_action/changePassword.php
++++ b/php_action/changePassword.php
+@@ -1,5 +1,6 @@
+-<?php 
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ if($_POST) {
+diff --git a/php_action/changeUsername.php b/php_action/changeUsername.php
+index 796d6f4..b77f674 100644
+--- a/php_action/changeUsername.php
++++ b/php_action/changeUsername.php
+@@ -1,5 +1,6 @@
+-<?php 
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ if($_POST) {
+diff --git a/php_action/createBrand.php b/php_action/createBrand.php
+index ecde1bb..4c98494 100644
+--- a/php_action/createBrand.php
++++ b/php_action/createBrand.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $valid['success'] = array('success' => false, 'messages' => array());
+diff --git a/php_action/createCategories.php b/php_action/createCategories.php
+index 62eb129..272a8bb 100644
+--- a/php_action/createCategories.php
++++ b/php_action/createCategories.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $valid['success'] = array('success' => false, 'messages' => array());
+diff --git a/php_action/createOrder.php b/php_action/createOrder.php
+index fa643aa..61c8033 100644
+--- a/php_action/createOrder.php
++++ b/php_action/createOrder.php
+@@ -1,6 +1,8 @@
+ <?php 	
+ //ALTER TABLE `orders` ADD `payment_place` INT NOT NULL AFTER `payment_status`;
+ //TER TABLE `orders` ADD `gstn` VARCHAR(255) NOT NULL AFTER `payment_place`;
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $valid['success'] = array('success' => false, 'messages' => array(), 'order_id' => '');
+diff --git a/php_action/createProduct.php b/php_action/createProduct.php
+index b8e806a..c725946 100644
+--- a/php_action/createProduct.php
++++ b/php_action/createProduct.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $valid['success'] = array('success' => false, 'messages' => array());
+diff --git a/php_action/createUser.php b/php_action/createUser.php
+index ce61884..c2f7720 100644
+--- a/php_action/createUser.php
++++ b/php_action/createUser.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $valid['success'] = array('success' => false, 'messages' => array());
+diff --git a/php_action/editBrand.php b/php_action/editBrand.php
+index a37bdb2..0b263b8 100644
+--- a/php_action/editBrand.php
++++ b/php_action/editBrand.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $valid['success'] = array('success' => false, 'messages' => array());
+diff --git a/php_action/editCategories.php b/php_action/editCategories.php
+index a509211..5e797c1 100644
+--- a/php_action/editCategories.php
++++ b/php_action/editCategories.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $valid['success'] = array('success' => false, 'messages' => array());
+diff --git a/php_action/editOrder.php b/php_action/editOrder.php
+index 2240a75..c9f9810 100644
+--- a/php_action/editOrder.php
++++ b/php_action/editOrder.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $valid['success'] = array('success' => false, 'messages' => array());
+diff --git a/php_action/editPayment.php b/php_action/editPayment.php
+index b1a931d..d7f7a44 100644
+--- a/php_action/editPayment.php
++++ b/php_action/editPayment.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $valid['success'] = array('success' => false, 'messages' => array());
+diff --git a/php_action/editProduct.php b/php_action/editProduct.php
+index 0cac472..ac594bb 100644
+--- a/php_action/editProduct.php
++++ b/php_action/editProduct.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $valid['success'] = array('success' => false, 'messages' => array());
+diff --git a/php_action/editProductImage.php b/php_action/editProductImage.php
+index ed99262..e65e1e1 100644
+--- a/php_action/editProductImage.php
++++ b/php_action/editProductImage.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $valid['success'] = array('success' => false, 'messages' => array());
+diff --git a/php_action/editUser.php b/php_action/editUser.php
+index b6138bc..908f631 100644
+--- a/php_action/editUser.php
++++ b/php_action/editUser.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $valid['success'] = array('success' => false, 'messages' => array());
+diff --git a/php_action/fetchBrand.php b/php_action/fetchBrand.php
+index 0b67522..f228767 100644
+--- a/php_action/fetchBrand.php
++++ b/php_action/fetchBrand.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $sql = "SELECT brand_id, brand_name, brand_active, brand_status FROM brands WHERE brand_status = 1";
+diff --git a/php_action/fetchCategories.php b/php_action/fetchCategories.php
+index 1ee0a2f..6f15ab0 100644
+--- a/php_action/fetchCategories.php
++++ b/php_action/fetchCategories.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $sql = "SELECT categories_id, categories_name, categories_active, categories_status FROM categories WHERE categories_status = 1";
+diff --git a/php_action/fetchOrder.php b/php_action/fetchOrder.php
+index 054cc0e..dab19fc 100644
+--- a/php_action/fetchOrder.php
++++ b/php_action/fetchOrder.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $sql = "SELECT order_id, order_date, client_name, client_contact, payment_status FROM orders WHERE order_status = 1";
+diff --git a/php_action/fetchOrderData.php b/php_action/fetchOrderData.php
+index 1fa8dc8..f873afa 100644
+--- a/php_action/fetchOrderData.php
++++ b/php_action/fetchOrderData.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $orderId = $_POST['orderId'];
+diff --git a/php_action/fetchProduct.php b/php_action/fetchProduct.php
+index 4ac589a..ecb09fb 100644
+--- a/php_action/fetchProduct.php
++++ b/php_action/fetchProduct.php
+@@ -1,7 +1,8 @@
+-<?php 	
+-
++<?php
+ 
+ 
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $sql = "SELECT product.product_id, product.product_name, product.product_image, product.brand_id,
+diff --git a/php_action/fetchProductData.php b/php_action/fetchProductData.php
+index 92aa057..190d634 100644
+--- a/php_action/fetchProductData.php
++++ b/php_action/fetchProductData.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $sql = "SELECT product_id, product_name FROM product WHERE status = 1 AND active = 1";
+diff --git a/php_action/fetchProductImageUrl.php b/php_action/fetchProductImageUrl.php
+index be0a52b..750996c 100644
+--- a/php_action/fetchProductImageUrl.php
++++ b/php_action/fetchProductImageUrl.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $productId = $_GET['i'];
+diff --git a/php_action/fetchSelectedBrand.php b/php_action/fetchSelectedBrand.php
+index 81cf5ff..6dbf062 100644
+--- a/php_action/fetchSelectedBrand.php
++++ b/php_action/fetchSelectedBrand.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $brandId = $_POST['brandId'];
+diff --git a/php_action/fetchSelectedCategories.php b/php_action/fetchSelectedCategories.php
+index ddfb9e4..1980d22 100644
+--- a/php_action/fetchSelectedCategories.php
++++ b/php_action/fetchSelectedCategories.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $categoriesId = $_POST['categoriesId'];
+diff --git a/php_action/fetchSelectedProduct.php b/php_action/fetchSelectedProduct.php
+index fd1d64b..efdf496 100644
+--- a/php_action/fetchSelectedProduct.php
++++ b/php_action/fetchSelectedProduct.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $productId = $_POST['productId'];
+diff --git a/php_action/fetchSelectedUser.php b/php_action/fetchSelectedUser.php
+index 636bf4d..a036625 100644
+--- a/php_action/fetchSelectedUser.php
++++ b/php_action/fetchSelectedUser.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $userid = $_POST['userid'];
+diff --git a/php_action/fetchUser.php b/php_action/fetchUser.php
+index e1b090d..e02227c 100644
+--- a/php_action/fetchUser.php
++++ b/php_action/fetchUser.php
+@@ -1,7 +1,8 @@
+-<?php 	
+-
++<?php
+ 
+ 
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ $sql = "SELECT * FROM users";
+diff --git a/php_action/removeBrand.php b/php_action/removeBrand.php
+index b3a9ffd..9fcf4be 100644
+--- a/php_action/removeBrand.php
++++ b/php_action/removeBrand.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ 
+diff --git a/php_action/removeCategories.php b/php_action/removeCategories.php
+index 88e9fa9..7b1a0b6 100644
+--- a/php_action/removeCategories.php
++++ b/php_action/removeCategories.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ 
+diff --git a/php_action/removeOrder.php b/php_action/removeOrder.php
+index 0ac2c97..db0c908 100644
+--- a/php_action/removeOrder.php
++++ b/php_action/removeOrder.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ 
+diff --git a/php_action/removeProduct.php b/php_action/removeProduct.php
+index ca3e2a2..b08432a 100644
+--- a/php_action/removeProduct.php
++++ b/php_action/removeProduct.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ 
+diff --git a/php_action/removeUser.php b/php_action/removeUser.php
+index 55828e7..19f3580 100644
+--- a/php_action/removeUser.php
++++ b/php_action/removeUser.php
+@@ -1,5 +1,6 @@
+-<?php 	
+-
++<?php
++header('Content-type: application/json');
++header("x-content-type-options: nosniff");
+ require_once 'core.php';
+ 
+ 
+-- 
+2.19.2.windows.1
+

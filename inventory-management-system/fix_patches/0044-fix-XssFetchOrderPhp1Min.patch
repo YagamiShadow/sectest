@@ -1,0 +1,28 @@
+From 6a7985dfcf9367c7939d914fc2c360afe3005a8c Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Sun, 2 Feb 2020 17:18:13 +0100
+Subject: [PATCH 44/47] fix XssFetchOrderPhp1Min
+
+---
+ php_action/fetchOrder.php | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/php_action/fetchOrder.php b/php_action/fetchOrder.php
+index d3950fe..054cc0e 100644
+--- a/php_action/fetchOrder.php
++++ b/php_action/fetchOrder.php
+@@ -53,9 +53,9 @@ if(mysqli_num_rows($result) > 0) {
+  		// order date
+  		$row[1],
+  		// client name
+- 		$row[2], 
++ 		htmlentities($row[2]), 
+  		// client contact
+- 		$row[3], 		 	
++ 		htmlentities($row[3]), 		 	
+  		$itemCountRow, 		 	
+  		$paymentStatus,
+  		// button
+-- 
+2.19.2.windows.1
+

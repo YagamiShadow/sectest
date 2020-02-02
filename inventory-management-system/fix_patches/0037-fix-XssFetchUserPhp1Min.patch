@@ -1,0 +1,25 @@
+From 42db3e57c64872d8180b1e263dcafa7d53fef9b1 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Sun, 2 Feb 2020 16:54:41 +0100
+Subject: [PATCH 37/47] fix XssFetchUserPhp1Min
+
+---
+ php_action/fetchUser.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/php_action/fetchUser.php b/php_action/fetchUser.php
+index 0980243..e1b090d 100644
+--- a/php_action/fetchUser.php
++++ b/php_action/fetchUser.php
+@@ -34,7 +34,7 @@ if(mysqli_num_rows($result) > 0) {
+ 
+  	$output['data'][] = array( 		
+  		// name
+- 		$username,
++ 		htmlentities($username),
+  		// button
+  		$button 		
+  		); 	
+-- 
+2.19.2.windows.1
+

@@ -1,0 +1,25 @@
+From b8c9811c476eb79e27bf6fd2423f44a6fbadccea Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Sun, 2 Feb 2020 17:01:47 +0100
+Subject: [PATCH 38/47] fix XssFetchSelectedCategoriesPhp1Min
+
+---
+ php_action/fetchSelectedCategories.php | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/php_action/fetchSelectedCategories.php b/php_action/fetchSelectedCategories.php
+index 9f9e6c3..ddfb9e4 100644
+--- a/php_action/fetchSelectedCategories.php
++++ b/php_action/fetchSelectedCategories.php
+@@ -9,6 +9,8 @@ $result = mysqli_query($conn, $sql);
+ 
+ if(mysqli_num_rows($result) > 0) { 
+  $row =  mysqli_fetch_array($result);
++ $row[1] = htmlentities($row[1]);
++ $row["categories_name"] = htmlentities($row["categories_name"]);
+ } // if num_rows
+ 
+ mysqli_close($conn);
+-- 
+2.19.2.windows.1
+

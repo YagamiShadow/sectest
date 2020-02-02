@@ -1,0 +1,37 @@
+From 213b17879376132af96b86fc2a9e17d713316cd0 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Sun, 2 Feb 2020 17:19:54 +0100
+Subject: [PATCH 45/47] fix XssFetchProductPhp1Min
+
+---
+ php_action/fetchProduct.php | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/php_action/fetchProduct.php b/php_action/fetchProduct.php
+index 96fdf0a..4ac589a 100644
+--- a/php_action/fetchProduct.php
++++ b/php_action/fetchProduct.php
+@@ -60,15 +60,15 @@ if(mysqli_num_rows($result) > 0) {
+  		// image
+  		$productImage,
+  		// product name
+- 		$row[1], 
++ 		htmlentities($row[1]), 
+  		// rate
+- 		$row[6],
++ 		htmlentities($row[6]),
+  		// quantity 
+- 		$row[5], 		 	
++ 		htmlentities($row[5]), 		 	
+  		// brand
+- 		$brand,
++ 		htmlentities($brand),
+  		// category 		
+- 		$category,
++ 		htmlentities($category),
+  		// active
+  		$active,
+  		// button
+-- 
+2.19.2.windows.1
+

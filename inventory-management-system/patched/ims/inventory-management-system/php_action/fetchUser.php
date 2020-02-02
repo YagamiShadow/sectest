@@ -1,7 +1,8 @@
-<?php 	
+<?php
 
 
-
+header('Content-type: application/json');
+header("x-content-type-options: nosniff");
 require_once 'core.php';
 
 $sql = "SELECT * FROM users";
@@ -34,7 +35,7 @@ if(mysqli_num_rows($result) > 0) {
 
  	$output['data'][] = array( 		
  		// name
- 		$username,
+ 		htmlentities($username),
  		// button
  		$button 		
  		); 	

@@ -1,7 +1,7 @@
 From e5977ad3a0ab59d9d5e9a0f3fb53728c018d31b8 Mon Sep 17 00:00:00 2001
 From: francescotescari <36578133+francescotescari@users.noreply.github.com>
 Date: Wed, 29 Jan 2020 00:08:29 +0100
-Subject: [PATCH 29/36] fix XssPrintOrderPhp1Min
+Subject: [PATCH 29/47] fix XssPrintOrderPhp1Min
 
 ---
  php_action/printOrder.php | 16 ++++++++--------
@@ -56,5 +56,5 @@ index 0b4f1f7..926eed3 100644
                    <tr>
                       <td colspan="3" style="border-top: 1px solid black;border-bottom: 1px solid black;border-left: 1px solid black;padding: 5px;">Neft For:- Bank Name</td>
 -- 
-2.7.4
+2.19.2.windows.1
 

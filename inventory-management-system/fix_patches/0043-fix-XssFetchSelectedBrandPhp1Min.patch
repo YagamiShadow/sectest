@@ -1,0 +1,25 @@
+From fc479688962dda6af04dd97efca0e31b41c1e90a Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Sun, 2 Feb 2020 17:15:45 +0100
+Subject: [PATCH 43/47] fix XssFetchSelectedBrandPhp1Min
+
+---
+ php_action/fetchSelectedBrand.php | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/php_action/fetchSelectedBrand.php b/php_action/fetchSelectedBrand.php
+index 174805b..81cf5ff 100644
+--- a/php_action/fetchSelectedBrand.php
++++ b/php_action/fetchSelectedBrand.php
+@@ -9,6 +9,8 @@ $result = mysqli_query($conn, $sql);
+ 
+ if(mysqli_num_rows($result) > 0) { 
+  $row =  mysqli_fetch_array($result);
++ $row[1] = htmlentities($row[1]);
++ $row["brand_name"] = htmlentities($row["brand_name"]);
+ } // if num_rows
+ 
+ mysqli_close($conn);
+-- 
+2.19.2.windows.1
+

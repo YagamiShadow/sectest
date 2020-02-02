@@ -1,6 +1,8 @@
 <?php 	
 //ALTER TABLE `orders` ADD `payment_place` INT NOT NULL AFTER `payment_status`;
 //TER TABLE `orders` ADD `gstn` VARCHAR(255) NOT NULL AFTER `payment_place`;
+header('Content-type: application/json');
+header("x-content-type-options: nosniff");
 require_once 'core.php';
 
 $valid['success'] = array('success' => false, 'messages' => array(), 'order_id' => '');

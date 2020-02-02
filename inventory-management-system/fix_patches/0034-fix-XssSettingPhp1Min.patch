@@ -1,7 +1,7 @@
 From 665486e46357eb1219fc1ed9906a876f2a13525b Mon Sep 17 00:00:00 2001
 From: francescotescari <36578133+francescotescari@users.noreply.github.com>
 Date: Wed, 29 Jan 2020 13:57:27 +0100
-Subject: [PATCH 34/36] fix XssSettingPhp1Min
+Subject: [PATCH 34/47] fix XssSettingPhp1Min
 
 ---
  setting.php | 2 +-
@@ -21,5 +21,5 @@ index 87c8bb9..04f0ab1 100644
  					  </div>
  
 -- 
-2.7.4
+2.19.2.windows.1
 

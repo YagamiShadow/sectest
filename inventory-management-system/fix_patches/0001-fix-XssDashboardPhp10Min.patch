@@ -1,7 +1,7 @@
 From ca71846ed3acda488ee8512bb31447f4eb33369e Mon Sep 17 00:00:00 2001
 From: francescotescari <36578133+francescotescari@users.noreply.github.com>
 Date: Tue, 28 Jan 2020 16:06:39 +0100
-Subject: [PATCH 01/36] fix XssDashboardPhp10Min
+Subject: [PATCH 01/47] fix XssDashboardPhp10Min
 
 ---
  dashboard.php | 2 +-
@@ -21,5 +21,5 @@ index 79bab11..5af9eb7 100644
  							
  						</tr>
 -- 
-2.7.4
+2.19.2.windows.1
 

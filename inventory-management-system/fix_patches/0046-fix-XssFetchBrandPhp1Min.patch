@@ -1,0 +1,25 @@
+From f736096c68fc712e79dc1fc772d502e9c24a2f00 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Sun, 2 Feb 2020 17:20:58 +0100
+Subject: [PATCH 46/47] fix XssFetchBrandPhp1Min
+
+---
+ php_action/fetchBrand.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/php_action/fetchBrand.php b/php_action/fetchBrand.php
+index c22fc2f..0b67522 100644
+--- a/php_action/fetchBrand.php
++++ b/php_action/fetchBrand.php
+@@ -35,7 +35,7 @@ if(mysqli_num_rows($result) > 0) {
+ 	</div>';
+ 
+  	$output['data'][] = array( 		
+- 		$row[1], 		
++ 		htmlentities($row[1]), 		
+  		$activeBrands,
+  		$button
+  		); 	
+-- 
+2.19.2.windows.1
+

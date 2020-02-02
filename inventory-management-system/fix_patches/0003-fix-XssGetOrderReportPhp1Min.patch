@@ -1,7 +1,7 @@
 From 4ae00081f068bccb54d94aabff0c9629c1fff6a8 Mon Sep 17 00:00:00 2001
 From: francescotescari <36578133+francescotescari@users.noreply.github.com>
 Date: Tue, 28 Jan 2020 16:47:14 +0100
-Subject: [PATCH 03/36] fix XssGetOrderReportPhp1Min
+Subject: [PATCH 03/47] fix XssGetOrderReportPhp1Min
 
 ---
  php_action/getOrderReport.php | 6 +++---
@@ -25,5 +25,5 @@ index 756833b..5ee977a 100644
  			$totalAmount += $result['grand_total'];
  		}
 -- 
-2.7.4
+2.19.2.windows.1
 

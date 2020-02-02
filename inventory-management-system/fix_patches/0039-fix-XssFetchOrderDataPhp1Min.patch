@@ -1,0 +1,26 @@
+From 484e0df9c9911509c83a67416692b42e4c1c1196 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Sun, 2 Feb 2020 17:05:46 +0100
+Subject: [PATCH 39/47] fix XssFetchOrderDataPhp1Min
+
+---
+ php_action/fetchOrderData.php | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/php_action/fetchOrderData.php b/php_action/fetchOrderData.php
+index f7d829d..1fa8dc8 100644
+--- a/php_action/fetchOrderData.php
++++ b/php_action/fetchOrderData.php
+@@ -11,6 +11,9 @@ $sql = "SELECT orders.order_id, orders.order_date, orders.client_name, orders.cl
+ 
+ $result = mysqli_query($conn, $sql);
+ $data = mysqli_fetch_row($result);
++foreach (array(2, 3, 4, 5, 6, 7, 8, 9, 10) as $i){
++	$data[$i] = htmlentities($data[$i]);
++}	
+ $valid['order'] = $data;
+ 
+ 
+-- 
+2.19.2.windows.1
+

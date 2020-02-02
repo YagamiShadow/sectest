@@ -1,5 +1,6 @@
-<?php 	
-
+<?php
+header('Content-type: application/json');
+header("x-content-type-options: nosniff");
 require_once 'core.php';
 
 $valid['success'] = array('success' => false, 'messages' => array());

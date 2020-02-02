@@ -1,7 +1,7 @@
 From d9fe43f72a43ee0abcfee7891c07cef65c50a100 Mon Sep 17 00:00:00 2001
 From: francescotescari <36578133+francescotescari@users.noreply.github.com>
 Date: Tue, 28 Jan 2020 17:50:18 +0100
-Subject: [PATCH 19/36] fix XssOrdersPhp45Min
+Subject: [PATCH 19/47] fix XssOrdersPhp45Min
 
 ---
  orders.php | 2 +-
@@ -21,5 +21,5 @@ index aadc504..fbe649f 100644
  				  </div> <!--/form-group-->	
  				  <div class="form-group">
 -- 
-2.7.4
+2.19.2.windows.1
 

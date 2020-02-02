@@ -1,7 +1,7 @@
 From 42bd0e6826be5802b961f8281e448f9c55c83be5 Mon Sep 17 00:00:00 2001
 From: francescotescari <36578133+francescotescari@users.noreply.github.com>
 Date: Wed, 29 Jan 2020 13:53:20 +0100
-Subject: [PATCH 32/36] fix XssProductPhp3Min
+Subject: [PATCH 32/47] fix XssProductPhp3Min
 
 ---
  product.php | 2 +-
@@ -21,5 +21,5 @@ index 822e9cd..0502343 100644
  										
  						      	?>
 -- 
-2.7.4
+2.19.2.windows.1
 

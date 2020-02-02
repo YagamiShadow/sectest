@@ -1,7 +1,7 @@
 From 04f29a111a2e1f9372c743f47bda42ae76979f2b Mon Sep 17 00:00:00 2001
 From: francescotescari <36578133+francescotescari@users.noreply.github.com>
 Date: Tue, 28 Jan 2020 16:27:03 +0100
-Subject: [PATCH 02/36] fix XssFetchProductDataPhp1Min
+Subject: [PATCH 02/47] fix XssFetchProductDataPhp1Min
 
 ---
  php_action/fetchProductData.php | 3 +++
@@ -22,5 +22,5 @@ index b584a3a..92aa057 100644
  mysqli_close($conn);
  
 -- 
-2.7.4
+2.19.2.windows.1
 

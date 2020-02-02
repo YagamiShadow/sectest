@@ -1,0 +1,27 @@
+From a85d199240ac54f9312a27fd0aff3b17744d5cd6 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Sun, 2 Feb 2020 17:13:52 +0100
+Subject: [PATCH 42/47] fix XssFetchSelectedProductPhp1Min
+
+---
+ php_action/fetchSelectedProduct.php | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/php_action/fetchSelectedProduct.php b/php_action/fetchSelectedProduct.php
+index 6880dd0..fd1d64b 100644
+--- a/php_action/fetchSelectedProduct.php
++++ b/php_action/fetchSelectedProduct.php
+@@ -9,6 +9,10 @@ $result = mysqli_query($conn, $sql);
+ 
+ if(mysqli_num_rows($result) > 0) { 
+  $row =  mysqli_fetch_array($result);
++ foreach ($row as $k => $v){
++	 if ($k != "product_image" && $k != 2) 
++	 $row[$k] = htmlentities($v);
++ }
+ } // if num_rows
+ 
+ mysqli_close($conn);
+-- 
+2.19.2.windows.1
+

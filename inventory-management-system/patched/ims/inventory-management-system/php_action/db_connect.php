@@ -1,6 +1,5 @@
 <?php 	
-$servername = getenv("IMS_DB_HOST");
-if (!$servername)
+
 $servername = "localhost";
 $username = "root";
 $password = "";

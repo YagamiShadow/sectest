@@ -1,5 +1,6 @@
-<?php 	
-
+<?php
+header('Content-type: application/json');
+header("x-content-type-options: nosniff");
 require_once 'core.php';
 
 $sql = "SELECT brand_id, brand_name, brand_active, brand_status FROM brands WHERE brand_status = 1";
@@ -35,7 +36,7 @@ if(mysqli_num_rows($result) > 0) {
 	</div>';
 
  	$output['data'][] = array( 		
- 		$row[1], 		
+ 		htmlentities($row[1]), 		
  		$activeBrands,
  		$button
  		); 	

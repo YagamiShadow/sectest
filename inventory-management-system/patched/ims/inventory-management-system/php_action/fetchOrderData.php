@@ -1,5 +1,6 @@
-<?php 	
-
+<?php
+header('Content-type: application/json');
+header("x-content-type-options: nosniff");
 require_once 'core.php';
 
 $orderId = $_POST['orderId'];
@@ -11,6 +12,9 @@ $sql = "SELECT orders.order_id, orders.order_date, orders.client_name, orders.cl
 
 $result = mysqli_query($conn, $sql);
 $data = mysqli_fetch_row($result);
+foreach (array(2, 3, 4, 5, 6, 7, 8, 9, 10) as $i){
+	$data[$i] = htmlentities($data[$i]);
+}	
 $valid['order'] = $data;
 
 

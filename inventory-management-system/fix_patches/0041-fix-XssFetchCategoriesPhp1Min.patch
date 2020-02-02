@@ -1,0 +1,25 @@
+From 7419461d3dccd022fce28a0edaee5ea23293fa97 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Sun, 2 Feb 2020 17:10:52 +0100
+Subject: [PATCH 41/47] fix XssFetchCategoriesPhp1Min
+
+---
+ php_action/fetchCategories.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/php_action/fetchCategories.php b/php_action/fetchCategories.php
+index 3137f24..1ee0a2f 100644
+--- a/php_action/fetchCategories.php
++++ b/php_action/fetchCategories.php
+@@ -35,7 +35,7 @@ if(mysqli_num_rows($result) > 0) {
+ 	</div>';
+ 
+  	$output['data'][] = array( 		
+- 		$row[1], 		
++ 		htmlentities($row[1]), 		
+  		$activeCategories,
+  		$button 		
+  		); 	
+-- 
+2.19.2.windows.1
+

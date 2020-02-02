@@ -1,5 +1,6 @@
-<?php 	
-
+<?php
+header('Content-type: application/json');
+header("x-content-type-options: nosniff");
 require_once 'core.php';
 
 $sql = "SELECT order_id, order_date, client_name, client_contact, payment_status FROM orders WHERE order_status = 1";
@@ -53,9 +54,9 @@ if(mysqli_num_rows($result) > 0) {
  		// order date
  		$row[1],
  		// client name
- 		$row[2], 
+ 		htmlentities($row[2]), 
  		// client contact
- 		$row[3], 		 	
+ 		htmlentities($row[3]), 		 	
  		$itemCountRow, 		 	
  		$paymentStatus,
  		// button

@@ -1,7 +1,7 @@
 From 2a92ca0431f6e2b0606059f5a355e6781fbd3508 Mon Sep 17 00:00:00 2001
 From: francescotescari <36578133+francescotescari@users.noreply.github.com>
 Date: Tue, 28 Jan 2020 17:41:28 +0100
-Subject: [PATCH 12/36] fix XssOrdersPhp35Min
+Subject: [PATCH 12/47] fix XssOrdersPhp35Min
 
 ---
  orders.php | 2 +-
@@ -21,5 +21,5 @@ index 52ac53a..9a21b39 100644
  			  				</td>
  			  				<td style="padding-left:20px;">			  					
 -- 
-2.7.4
+2.19.2.windows.1
 

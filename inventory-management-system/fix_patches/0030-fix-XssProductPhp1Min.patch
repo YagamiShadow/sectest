@@ -1,7 +1,7 @@
 From e1f6fe3076ba54becd239068e8136b41a95ad89f Mon Sep 17 00:00:00 2001
 From: francescotescari <36578133+francescotescari@users.noreply.github.com>
 Date: Wed, 29 Jan 2020 13:48:50 +0100
-Subject: [PATCH 30/36] fix XssProductPhp1Min
+Subject: [PATCH 30/47] fix XssProductPhp1Min
 
 ---
  product.php | 2 +-
@@ -21,5 +21,5 @@ index b4f42d6..0309fbe 100644
  								
  				      	?>
 -- 
-2.7.4
+2.19.2.windows.1
 

@@ -1,0 +1,26 @@
+From 66c3d37bce1c401720a3749e0c2ac01b7bf0d733 Mon Sep 17 00:00:00 2001
+From: francescotescari <36578133+francescotescari@users.noreply.github.com>
+Date: Sun, 2 Feb 2020 17:08:48 +0100
+Subject: [PATCH 40/47] fix XssFetchSelectedUserPhp1Min
+
+---
+ php_action/fetchSelectedUser.php | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/php_action/fetchSelectedUser.php b/php_action/fetchSelectedUser.php
+index 34eef98..636bf4d 100644
+--- a/php_action/fetchSelectedUser.php
++++ b/php_action/fetchSelectedUser.php
+@@ -9,6 +9,9 @@ $result = mysqli_query($conn, $sql);
+ 
+ if(mysqli_num_rows($result) > 0) { 
+  $row = mysqli_fetch_array($result);
++ foreach ($row as $k => $v){
++	 $row[$k] = htmlentities($v);
++ }
+ } // if num_rows
+ 
+ mysqli_close($conn);
+-- 
+2.19.2.windows.1
+

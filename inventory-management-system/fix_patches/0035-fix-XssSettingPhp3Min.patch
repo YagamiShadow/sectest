@@ -1,7 +1,7 @@
 From cc4bd514d0422966a0f401df2669e96801cb641b Mon Sep 17 00:00:00 2001
 From: francescotescari <36578133+francescotescari@users.noreply.github.com>
 Date: Wed, 29 Jan 2020 13:59:13 +0100
-Subject: [PATCH 35/36] fix XssSettingPhp3Min
+Subject: [PATCH 35/47] fix XssSettingPhp3Min
 
 ---
  setting.php | 2 +-
@@ -21,5 +21,5 @@ index 04f0ab1..5d2a7a7 100644
  					  </div>
  
 -- 
-2.7.4
+2.19.2.windows.1
 

@@ -1,7 +1,7 @@
 From e93e30a83a896172fa2f26eb1b706cc9c467dba6 Mon Sep 17 00:00:00 2001
 From: francescotescari <36578133+francescotescari@users.noreply.github.com>
 Date: Tue, 28 Jan 2020 23:52:14 +0100
-Subject: [PATCH 28/36] fix XssOrdersPhp64Min
+Subject: [PATCH 28/47] fix XssOrdersPhp64Min
 
 ---
  orders.php | 2 +-
@@ -21,5 +21,5 @@ index 960af65..6174d59 100644
  			    <button type="submit" id="editOrderBtn" data-loading-text="Loading..." class="btn btn-success"><i class="glyphicon glyphicon-ok-sign"></i> Save Changes</button>
  			      
 -- 
-2.7.4
+2.19.2.windows.1
 
