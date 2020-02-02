@@ -26,6 +26,7 @@ public class XssFetchSelectedBrandPhp1Min extends BaseTest {
     public void clean() {
         if (brandId != null) {
             helper.removeBrand(brandId);
+            brandId = null;
         }
     }
 }

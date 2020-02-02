@@ -126,7 +126,7 @@ public class XssFetchProductPhp1Min extends BaseTest {
             brandId = null;
         }
         if (categoryId != null) {
-            helper.removeProduct(categoryId);
+            helper.removeCategory(categoryId);
             categoryId = null;
         }
     }

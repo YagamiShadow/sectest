@@ -28,6 +28,7 @@ public class XssProductPhp2Min extends BaseTest {
     public void clean() {
         if (categoryId != null) {
             helper.removeCategory(categoryId);
+            categoryId = null;
         }
     }
 }

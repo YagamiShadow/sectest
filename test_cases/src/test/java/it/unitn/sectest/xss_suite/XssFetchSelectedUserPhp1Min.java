@@ -69,6 +69,7 @@ public class XssFetchSelectedUserPhp1Min extends BaseTest {
     public void clean() {
         if (userId != null) {
             helper.deleteUser(userId);
+            userId = null;
         }
     }
 }

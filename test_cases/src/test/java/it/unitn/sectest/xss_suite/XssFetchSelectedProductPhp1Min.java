@@ -62,6 +62,7 @@ public class XssFetchSelectedProductPhp1Min extends BaseTest {
     public void clean() {
         if (productId != null) {
             helper.removeProduct(productId);
+            productId = null;
         }
     }
 }

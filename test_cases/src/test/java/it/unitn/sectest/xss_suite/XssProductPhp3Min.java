@@ -28,6 +28,7 @@ public class XssProductPhp3Min extends BaseTest {
     public void clean() {
         if (brandId != null) {
             helper.removeBrand(brandId);
+            brandId = null;
         }
     }
 }
